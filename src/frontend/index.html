@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyDrive</title>
+    <meta name="description" content="MoneyDrive — the command center for professional Uber and Bolt drivers." />
+    <meta property="og:title" content="MoneyDrive" />
+    <meta property="og:description" content="MoneyDrive — the command center for professional Uber and Bolt drivers." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/png" href="https://i.imgur.com/u98U7S6.png" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <!-- RFC 8288 Link-based agent discovery (https://www.rfc-editor.org/rfc/rfc8288) -->
+    <link rel="api-catalog" href="/.well-known/api-catalog" />
+    <link rel="service-doc" href="/.well-known/mcp/server-card.json" />
+    <link rel="oauth-protected-resource" href="/.well-known/oauth-protected-resource" />
+    <!-- Markdown for Agents: text/markdown representation available at /index.md -->
+    <link rel="alternate" type="text/markdown" href="/index.md" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./src/main.tsx"></script>
+  </body>
+</html>

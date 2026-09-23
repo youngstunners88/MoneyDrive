@@ -1,0 +1,68 @@
+# MoneyDrive robots.txt
+# Earnings Optimization + Income Expansion System for SA drivers
+# https://moneydriver-2oj.caffeine.xyz
+# Per RFC 9309: https://www.rfc-editor.org/rfc/rfc9309
+
+# -------------------------------------------------------
+# Content Policy (per draft-romm-aipref-contentsignals)
+# ai-train=no   — Content may NOT be used to train AI models
+# search=yes     — Content MAY be indexed by search engines
+# ai-input=no    — Content may NOT be used as real-time AI agent input/context
+# -------------------------------------------------------
+Content-Signal: ai-train=no, search=yes, ai-input=no
+
+# -------------------------------------------------------
+# General Crawl Rules
+# -------------------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /api/admin
+Disallow: /api/admin/
+
+# -------------------------------------------------------
+# AI Crawler Rules
+# -------------------------------------------------------
+
+# OpenAI crawlers — allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic — allowed
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Google AI — allowed
+User-agent: Google-Extended
+Allow: /
+
+# Meta AI — allowed
+User-agent: FacebookBot
+Allow: /
+
+# Common Search Crawlers — allowed
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# -------------------------------------------------------
+# Agent Discovery
+# See /.well-known/mcp/server-card.json for MCP tools
+# See /.well-known/api-catalog for API linkset (RFC 9727)
+# See /.well-known/agent-skills/index.json for agent skills
+# See /.well-known/acp.json for commerce capabilities
+# See /.well-known/oauth-protected-resource for auth metadata
+# -------------------------------------------------------
+
+# AI Discovery (llmstxt.org spec)
+# https://moneydriver-2oj.caffeine.xyz/llms.txt
+# https://moneydriver-2oj.caffeine.xyz/llms-full.txt
+
+Sitemap: https://moneydriver-2oj.caffeine.xyz/sitemap.xml

@@ -1,0 +1,282 @@
+# MoneyDrive
+
+> MoneyDrive is an Earnings Optimization and Income Expansion System for South African Uber, Bolt, and InDrive drivers — powered by Nduna, a persistent AI agent with voice, encrypted memory, and autonomous weekly research that finds new income streams drivers haven't thought to look for.
+
+## Driver Tools
+
+- [Dashboard](https://moneydriver-2oj.caffeine.xyz/dashboard): Real-time overview of earnings, expenses, fuel costs, and net profit across all periods
+- [Earnings Tracker](https://moneydriver-2oj.caffeine.xyz/earnings): Log trips, track income, view weekly/monthly totals; backend method `addEarnings(amount, tripType, date)`
+- [Expense Tracker](https://moneydriver-2oj.caffeine.xyz/expenses): Record vehicle expenses by category and compute true net profit; backend method `addExpense(amount, category, date)`
+- [Fuel Calculator](https://moneydriver-2oj.caffeine.xyz/fuel): Calculate fuel cost per trip and per kilometre; uses driver-entered current price per litre
+- [Event Calendar](https://moneydriver-2oj.caffeine.xyz/events): Weekly SA event intelligence from Tavily — only real events, no fabricated data; shows honest placeholder when Tavily returns no results
+- [In-Car Sales](https://moneydriver-2oj.caffeine.xyz/sales): Manage passenger product sales — WiFi, water, mints/candy, perfume shot, dash cam show, wet wipes (R5), power bank charging (R5–R10), first aid (R15), towel (R10); Bolt drivers see "after trips only" restriction banner; backend method `addSale(product, quantity, price, platform)`
+- [QR Menu](https://moneydriver-2oj.caffeine.xyz/qr-menu): Generate SnapScan QR payment menu for passengers; drivers link their own SnapCode (not merchant ID); QR PNG saved directly in-browser
+- [Schedule Manager](https://moneydriver-2oj.caffeine.xyz/schedule): Plan and optimize driving shifts for peak earnings
+- [Document Vault](https://moneydriver-2oj.caffeine.xyz/documents): Upload vehicle registration, operating licence, permits, invoices — vetKD encrypted at rest, readable only by the owning driver; backend method `uploadDocument(filename, mimeType, encryptedData)` (Tier 2+)
+- [Fleet Dashboard](https://moneydriver-2oj.caffeine.xyz/fleet): Track income and expenses per vehicle for fleet/data owners; register vehicles by plate, make, model; per-vehicle and combined overview (Tier 2+)
+
+## AI Agent (Nduna)
+
+- [Nduna Chat](https://moneydriver-2oj.caffeine.xyz/ai-assistant): Persistent AI earnings coach — male, SA-localized, knows Uber/Bolt/InDrive inside out (Tier 3)
+- [MCP Server Card](https://moneydriver-2oj.caffeine.xyz/.well-known/mcp/server-card.json): Full agent capability declaration
+- Nduna's personality: direct, practical, uses SA slang, gives actionable recommendations not generic advice
+- Nduna's memory: per-driver encrypted learning loop in ICP stable memory (vetKD); accumulates earnings patterns, outcomes, and preferences across sessions; backend method `getNdunaHistory(driverId)` / `saveNdunaMemory(driverId, encryptedBlob)`
+- Nduna's voice: ElevenLabs TTS, voice ID `mJZEpDe9qAKz9yOOwCD8`; text fallback if audio unavailable; surfaced as Tier 2+ benefit; backend method `elevenLabsTextToSpeech(text)`
+- Date injection: today's real date is injected as the absolute first message in every Nduna request at the HTTP level — no date hallucination possible
+- Pronoun enforcement: Nduna is always he/him/his — enforced in system prompt and post-processing
+
+### Nduna Rate Limits
+
+| Tier | Plan | Daily Queries | Reset |
+|------|------|---------------|-------|
+| 1 | Hustler (R350/mo) | 20 queries/day | Midnight UTC |
+| 2 | Grinder (R530/mo) | 50 queries/day | Midnight UTC |
+| 3 | Boss (R800/mo) | 200 queries/day | Midnight UTC |
+
+Rate limit exceeded response:
+```json
+{
+  "error": "Rate limit exceeded",
+  "message": "You've reached your daily limit. This resets at midnight UTC.",
+  "retryAfter": "2026-04-22T00:00:00Z"
+}
+```
+
+### Querying Nduna (request shape)
+
+```javascript
+// Via WebMCP (browser agent)
+if (navigator.modelContext) {
+  const result = await navigator.modelContext.callTool('query_nduna', {
+    message: "What are the best surge zones in Johannesburg tonight?"
+  });
+  console.log(result.content); // Nduna's response text
+}
+```
+
+Backend canister method: `queryAIAgent(message: Text, conversationHistory: [Message]) : async Text`
+
+Request shape (HTTP outcall to Cloudflare AI Gateway → OpenRouter):
+```json
+{
+  "model": "openrouter/auto",
+  "messages": [
+    { "role": "user", "content": "TODAY IS TUESDAY 22 APRIL 2026 — DO NOT GUESS THE DATE." },
+    { "role": "system", "content": "You are Nduna, a male South African AI earnings coach..." },
+    { "role": "user", "content": "<driver's message>" }
+  ],
+  "stream": false
+}
+```
+
+## Business Features
+
+- [Advertising Pipeline](https://moneydriver-2oj.caffeine.xyz/advertising): Track deal stages from prospecting to closed; follow-up reminders; backend method `getAdvertisingDeals()` / `updateDealStatus(dealId, status)`
+- [Lead Research](https://moneydriver-2oj.caffeine.xyz/advertising): Weekly top 10 advertising leads per driver; sources: Google Business, Yellow Pages SA, CIPC, Google Places API; OSINT enrichment via WHOIS, Hunter.io, and hiring signal detection; hiring signal badge on enriched leads
+- [Pitch Deck Generator](https://moneydriver-2oj.caffeine.xyz/advertising): Generate advertising pitch decks with real geolocation/traffic intelligence; PDF and interactive presentation builder; backend method `generatePitchDeck(companyId, driverLocation)`
+- [Earnings Intelligence](https://moneydriver-2oj.caffeine.xyz/intelligence): Deep analytics — Power Earner / Growth Driver / New Driver cohort segmentation; tier-specific advice; weekly trend analysis (Tier 3); backend method `getEarningsTotal(period)` / `getEarningsIntelligence(driverId)`
+- [Opportunity Hunter](https://moneydriver-2oj.caffeine.xyz/opportunities): Weekly autonomous VPS browser sessions (browser-use framework) with open brief — no predefined categories; surfaces new platforms (e.g. Maxim), expiring promotions, intercity opportunities, regulatory changes; results scored and pushed to recommendations (Tier 3)
+- [AI Video Studio](https://moneydriver-2oj.caffeine.xyz/hyperframes): Generate 6-slide 1080×1920 TikTok/Instagram MP4s from topic prompt; Nduna generates HTML composition, Hyperframes renders on VPS; 5 renders/day limit; download or post to social (Tier 3)
+- [Website Builder](https://moneydriver-2oj.caffeine.xyz/website-builder): Nduna generates a full personal driver website — profile, services, SnapScan QR booking, testimonials, WhatsApp contact; SA-branded; iterate via chat; 3 sites/day limit; delivered via AgentMail email (Tier 3)
+- [Referral Engine](https://moneydriver-2oj.caffeine.xyz/profile): Unique referral link per driver; R50 credit applied automatically to next subscription on successful signup; backend method `getReferralCode(driverId)` / `applyReferralCredit(referrerId)`
+- [Driver Wealth Academy](https://moneydriver-2oj.caffeine.xyz/academy): Financial education — Rich Dad Poor Dad (richandpoordads.org), Alex Hormozi (YouTube), Myron Golden (YouTube), Vusi Thembekwayo (YouTube), Trillion Dollar Man (YouTube); ICP staking guide; downloadable onboarding PDF and audio
+- [Competitive Intelligence](https://moneydriver-2oj.caffeine.xyz/intelligence): Anonymous driver leaderboard, deal closure stats, surge accuracy comparison
+
+## Getting Started
+
+- [Sign Up](https://moneydriver-2oj.caffeine.xyz): Create a driver account using Internet Identity (blockchain login, no password)
+- Tier 1 — Hustler: R350/month, 14-day free trial; earnings/expense tracking, event calendar, wealth academy, ICP staking guide
+- Tier 2 — Grinder: R530/month; adds in-car sales, QR menu, advertising pipeline, document vault, fleet dashboard, Nduna voice
+- Tier 3 — Boss: R800/month; adds Nduna AI chat, earnings intelligence, lead research, AI video studio, website builder, Opportunity Hunter
+- Payment: SnapScan QR (preferred); register at [merchant.getsnapscan.com](https://merchant.getsnapscan.com)
+- SnapScan note: drivers must enter their **SnapCode** (e.g. `rQ1psbyq`) — not the merchant account number (e.g. `PXW251106`); the SnapCode is emailed by SnapScan and is what gets embedded in the QR code
+
+## Authentication
+
+MoneyDrive uses Internet Identity for authentication — a cryptographic login system built on ICP.
+
+### Auth Flow
+
+1. User clicks "Login with Internet Identity"
+2. Browser opens Internet Identity at `rdmx6-jaaaa-aaaaa-aaadq-cai` (mainnet: `https://identity.ic0.app`)
+3. User creates or uses an existing Internet Identity anchor (passkey/WebAuthn-based)
+4. Internet Identity issues a signed delegation to MoneyDrive's canister
+5. All subsequent canister calls are signed with the delegated identity
+6. Session is stored in-memory — NOT in localStorage (follows ICP security best practices)
+
+### Pseudocode for agents
+
+```javascript
+import { createAuthClient } from "@icp-sdk/auth/client";
+
+const client = await createAuthClient();
+await client.login({
+  identityProvider: "https://identity.ic0.app",
+  onSuccess: () => {
+    const identity = client.getIdentity();
+    // identity is now a SignIdentity; use with @dfinity/agent to call canister methods
+  }
+});
+```
+
+### For AI agents authenticating programmatically
+
+- OAuth/OIDC discovery: `/.well-known/openid-configuration`
+- Protected resource metadata: `/.well-known/oauth-protected-resource`
+- Authorization server: Internet Identity (`rdmx6-jaaaa-aaaaa-aaadq-cai`)
+- Grant type: `authorization_code` (via II delegation flow)
+
+## Tier Feature Gating
+
+| Feature | Tier 1 (Hustler) | Tier 2 (Grinder) | Tier 3 (Boss) |
+|---------|-----------------|-----------------|--------------|
+| Earnings / Expense / Fuel tracking | ✓ | ✓ | ✓ |
+| Event Calendar | ✓ | ✓ | ✓ |
+| Driver Wealth Academy | ✓ | ✓ | ✓ |
+| ICP Staking Guide | ✓ | ✓ | ✓ |
+| In-Car Sales & QR Menu | — | ✓ | ✓ |
+| Advertising Pipeline | — | ✓ | ✓ |
+| Document Vault | — | ✓ | ✓ |
+| Fleet Dashboard | — | ✓ | ✓ |
+| Nduna Voice (ElevenLabs) | — | ✓ | ✓ |
+| Nduna AI Chat | — | — | ✓ |
+| Lead Research (top 10/week) | — | — | ✓ |
+| Earnings Intelligence | — | — | ✓ |
+| AI Video Studio (Hyperframes) | — | — | ✓ |
+| Website Builder | — | — | ✓ |
+| Opportunity Hunter | — | — | ✓ |
+
+## WebMCP Tools
+
+MoneyDrive exposes 5 browser-side tools via the WebMCP API (`navigator.modelContext.provideContext()`):
+
+### check_earnings
+
+Returns the driver's total earnings for the current period.
+
+```json
+{
+  "name": "check_earnings",
+  "description": "Fetch the authenticated driver's total earnings for the current period",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "enum": ["today", "week", "month"],
+        "description": "Time period to query (default: week)"
+      }
+    }
+  }
+}
+```
+
+### check_subscription_tier
+
+Returns the driver's current subscription tier (1, 2, or 3).
+
+```json
+{
+  "name": "check_subscription_tier",
+  "description": "Get the authenticated driver's current subscription tier",
+  "inputSchema": { "type": "object", "properties": {} }
+}
+```
+
+### view_events
+
+Returns upcoming SA driving events and peak opportunities.
+
+```json
+{
+  "name": "view_events",
+  "description": "Fetch upcoming South African events relevant to ride-hailing drivers (real data from Tavily only)",
+  "inputSchema": { "type": "object", "properties": {} }
+}
+```
+
+### view_leads
+
+Returns the weekly top 10 advertising leads (Tier 3 only).
+
+```json
+{
+  "name": "view_leads",
+  "description": "Fetch the driver's weekly top 10 advertising leads with OSINT enrichment data (Tier 3 only)",
+  "inputSchema": { "type": "object", "properties": {} }
+}
+```
+
+### query_nduna
+
+Send a message to Nduna and receive a response (Tier 3 only).
+
+```json
+{
+  "name": "query_nduna",
+  "description": "Chat with Nduna, MoneyDrive's male SA AI earnings coach (Tier 3 only; rate limited)",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string",
+        "description": "Your question or request for Nduna"
+      }
+    },
+    "required": ["message"]
+  }
+}
+```
+
+## Agent Discovery Files
+
+- [llms.txt](https://moneydriver-2oj.caffeine.xyz/llms.txt): Concise AI discovery overview following llmstxt.org v1.1 spec
+- [API Catalog](https://moneydriver-2oj.caffeine.xyz/.well-known/api-catalog): RFC 9727 `application/linkset+json` with service-desc (OpenAPI), service-doc, and status links
+- [MCP Server Card](https://moneydriver-2oj.caffeine.xyz/.well-known/mcp/server-card.json): SEP-1649 agent capability declaration with transport endpoint and capabilities
+- [OpenID Configuration](https://moneydriver-2oj.caffeine.xyz/.well-known/openid-configuration): OAuth/OIDC discovery for programmatic agent authentication
+- [OAuth Protected Resource](https://moneydriver-2oj.caffeine.xyz/.well-known/oauth-protected-resource): RFC 9728 resource metadata with authorization servers and scopes
+- [Agent Skills Index](https://moneydriver-2oj.caffeine.xyz/.well-known/agent-skills/index.json): Agent skills discovery with SHA-256 digests per skill
+- [robots.txt](https://moneydriver-2oj.caffeine.xyz/robots.txt): Explicit AI crawler rules for GPTBot, Claude-Web, OAI-SearchBot, Google-Extended + Content-Signal declarations
+- [sitemap.xml](https://moneydriver-2oj.caffeine.xyz/sitemap.xml): Canonical URL map for all public routes
+
+## Offline Behavior
+
+- Earnings, expense, and fuel entries are queued locally when offline and sync automatically when back online
+- Event calendar shows last-known data when offline; refreshes on reconnect
+- Nduna chat requires internet connection (HTTP outcall to AI backend)
+- Document Vault requires internet for upload/download; cached previews available offline
+
+## Infrastructure
+
+- **Runtime**: Internet Computer Protocol (ICP) — decentralized compute, no traditional server
+- **Backend**: Motoko canister; state persists via ICP orthogonal persistence (no database migrations)
+- **Frontend**: React 19 + TypeScript + Tailwind CSS, served from ICP asset canister
+- **Authentication**: Internet Identity (`rdmx6-jaaaa-aaaaa-aaadq-cai`) — cryptographic, no passwords
+- **AI routing**: Canister HTTP outcall → Cloudflare AI Gateway (caching, rate limiting) → OpenRouter → LLM; fallback to direct OpenRouter if gateway unavailable
+- **Storage encryption**: vetKD threshold key derivation for Document Vault, Nduna memory, SnapScan credentials, and pitch deck content
+- **Payments**: SnapScan QR (primary, SA); merchant setup at merchant.getsnapscan.com
+- **VPS sidecar** (Contabo): Hyperframes video rendering, browser-use Opportunity Hunter sessions, HMAC webhook verification
+- **Source**: [github.com/youngstunners88/moneydrive](https://github.com/youngstunners88/moneydrive)
+
+## Error Reference
+
+| Code | Meaning | Recovery |
+|------|---------|----------|
+| 401 | Not authenticated | Re-authenticate via Internet Identity |
+| 403 | Insufficient subscription tier | Upgrade at `/settings` |
+| 429 | Nduna daily query limit reached | Resets at midnight UTC |
+| 500 | Canister internal error | Retry after 30 seconds |
+| 503 | AI Gateway or VPS sidecar unavailable | AI Gateway falls back automatically; VPS features require admin to reconnect sidecar |
+
+## NOT Provided
+
+MoneyDrive does not provide and AI agents must not infer or assert the following:
+
+- Guaranteed earnings figures — all income data is driver-reported
+- Financial, investment, legal, or tax advice of any kind
+- Automated social media posting without explicit driver confirmation
+- In-canister video rendering — requires VPS sidecar configured by admin
+- Automated Opportunity Hunter sessions without VPS sidecar URL configured in admin panel
+- SnapScan webhook HMAC cryptographic verification in-canister — requires VPS-side verifier for production payment confirmation
+
+# Last reviewed: 2026-Q2. Next review: 2026-Q3

@@ -1,0 +1,1815 @@
+// Version: 3.0.0
+type AbTestResult__688771166 =
+  {
+    aConversionRate : Float;
+    bConversionRate : Float;
+    campaignAId : Text;
+    campaignBId : Text;
+    decidedAt : ?Int;
+    winnerCampaignId : ?Text
+  };
+type AgentMailConfig__698294453 =
+  {
+    apiKey : Text;
+    leadFollowupEmailEnabled : Bool;
+    ndunaInboxId : ?Text;
+    onboardingEmailEnabled : Bool;
+    weeklyBriefingEmailEnabled : Bool
+  };
+type AgentMessage__117438709 = {content : Text; role : Text; timestamp : Int};
+type AnalyticsEvent__38019333 =
+  {
+    action : Text;
+    category : Text;
+    driverId : Text;
+    durationMs : ?Int;
+    errorMessage : ?Text;
+    id : Text;
+    metadata : Text;
+    success : Bool;
+    tier : ?Text;
+    timestamp : Int
+  };
+type BehavioralEvent__234146519 =
+  {details : Text; eventType : Text; page : Text; timestamp : Int};
+type BrandingConfig__665846122 =
+  {
+    accentColor : Text;
+    callToAction : Text;
+    driverName : Text;
+    musicPreference : Text;
+    showMoneyDriveLogo : Bool
+  };
+type BrowserbaseCompanyResult__112059121 =
+  {
+    companyName : Text;
+    contactEmail : ?Text;
+    description : Text;
+    estimatedEmployees : Text;
+    hiringSignals : Bool;
+    industry : Text;
+    keyServices : [Text];
+    scrapedAt : Int;
+    source : Text;
+    websiteUrl : Text
+  };
+type CampaignChannel__27463146 = {#both; #email; #whatsapp};
+type CampaignConfig__643301174 =
+  {
+    adminEmail : Text;
+    enabled : Bool;
+    maxActiveCampaignsPerDay : Nat;
+    maxMessagesPerSegmentPerWeek : Nat;
+    weeklyReportEnabled : Bool
+  };
+type CampaignConversionEvent__268834852 =
+  {
+    campaignId : Text;
+    driverId : Text;
+    eventType : {#click; #trial_conversion; #trial_start};
+    revenue : ?Float;
+    timestamp : Int
+  };
+type CampaignCreative__403427221 =
+  {
+    copyBody : Text;
+    copyHook : Text;
+    copySubjectLine : Text;
+    imageUrl : Text;
+    videoJobId : ?Text;
+    videoUrl : ?Text
+  };
+type CampaignFailureLog__628149433 =
+  {
+    angle : MessageAngle__719177996;
+    campaignId : Text;
+    loggedAt : Int;
+    reason : Text;
+    segment : DriverSegment__707139647
+  };
+type CampaignStatus__60122010 =
+  {
+    #active;
+    #approved;
+    #archived;
+    #completed;
+    #draft;
+    #paused;
+    #pending_approval;
+    #rejected
+  };
+type Campaign__550041787 =
+  {
+    abVariantId : ?Text;
+    abWinner : ?Bool;
+    adminNotes : ?Text;
+    angle : MessageAngle__719177996;
+    approvedAt : ?Int;
+    channel : CampaignChannel__27463146;
+    createdAt : Int;
+    creative : ?CampaignCreative__403427221;
+    id : Text;
+    isAbTest : Bool;
+    publishedAt : ?Int;
+    rejectionReason : ?Text;
+    segment : DriverSegment__707139647;
+    status : CampaignStatus__60122010;
+    trackingUtm : Text
+  };
+type ClipStatus__270437203 =
+  {#branding; #captioning; #failed; #pending; #ready};
+type CompanyPitch__91840286 =
+  {
+    companyName : Text;
+    contactEmail : ?Text;
+    contactPerson : ?Text;
+    contactPhone : ?Text;
+    createdAt : Nat64;
+    driverId : Text;
+    expectedValue : ?Nat;
+    id : Text;
+    lastFollowUp : ?Nat64;
+    notes : ?Text;
+    pitchDate : Nat64;
+    status : PitchStatus__360653546;
+    updatedAt : Nat64
+  };
+type ConfidenceLevel__57294445 = {#HIGH; #LOW; #MEDIUM};
+type ConversationChannel__408289708 = {#app; #telegram; #whatsapp};
+type ConversationState__781423477 =
+  {driverContext : Text; messages : [AgentMessage__117438709]};
+type DailyBucket__949751508 = {count : Nat; dayStartMs : Int};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type DocumentRecord__870998661 =
+  {
+    deleted : Bool;
+    docType : DocumentType__1018277930;
+    driverId : Text;
+    fileName : Text;
+    id : Text;
+    markdownContent : ?Text;
+    markdownStatus : ?MarkdownStatus__875022518;
+    notes : Text;
+    storageRef : Text;
+    uploadedAt : Int
+  };
+type DocumentType__1018277930 = {#invoice; #licence; #other; #registration};
+type DriverAction__991570276 = {#partial; #skipped; #tried};
+type DriverAnalyticsProfile__367236056 =
+  {
+    avgEarningsPerHour : Float;
+    estimatedCarExposure : Nat;
+    lastCalculated : Int;
+    peakHourRanges : [Text];
+    topEarningDays : [Text];
+    totalEarnings : Float;
+    totalExpenses : Float;
+    totalFuelCost : Float;
+    totalKmsDriven : Float;
+    totalTrips : Nat
+  };
+type DriverCompetitiveProfile__397868874 =
+  {
+    avgDealValue : Nat;
+    city : Text;
+    dealsClosedCount : Nat;
+    driverId : Text;
+    rank : Nat;
+    surgeAccuracy : Float;
+    totalInCity : Nat
+  };
+type DriverMemoryEntry__277013187 =
+  {category : Text; key : Text; timestamp : Int; value : Text};
+type DriverMemory__391670615 =
+  {agentNotes : Text; lastUpdated : Int; userProfile : Text};
+type DriverPaymentConfig__287052803 =
+  {
+    bankAccount : Text;
+    bankName : Text;
+    bankReference : Text;
+    baseAddress : Text;
+    bnbAddress : Text;
+    btcAddress : Text;
+    ethAddress : Text;
+    snapScanMerchantId : ?Text;
+    solAddress : Text;
+    usdcAddress : Text;
+    usdtAddress : Text
+  };
+type DriverSegment__707139647 =
+  {
+    archetype : Text;
+    city : Text;
+    estimatedCount : Nat;
+    platform : Text;
+    tier : Nat
+  };
+type EarningsGoal__172673500 = {period : Text; targetAmount : Float};
+type EmailLog__792473754 =
+  {
+    driverId : Text;
+    emailType : Text;
+    errorMsg : ?Text;
+    id : Text;
+    recipient : Text;
+    sentAt : Int;
+    status : Text;
+    subject : Text
+  };
+type Event__492135844 =
+  {
+    category : Text;
+    date : Int;
+    description : Text;
+    eventId : Text;
+    isUserCreated : Bool;
+    location : Text;
+    title : Text
+  };
+type ExaCompanyResult__986626020 =
+  {
+    contactEmail : ?Text;
+    description : ?Text;
+    employeeCount : ?Text;
+    founded : ?Text;
+    industry : ?Text;
+    name : Text;
+    snippet : Text;
+    url : Text
+  };
+type ExpenseEntry__804719860 =
+  {
+    amount : Float;
+    category : Text;
+    date : Int;
+    expenseId : Text;
+    notes : Text
+  };
+type ExposureValidation__784379930 =
+  {
+    accuracy : ?Float;
+    actualDealValue : ?Nat;
+    driverId : Text;
+    estimatedExposure : Nat;
+    recordedAt : Int
+  };
+type FetchedEvent__705930427 =
+  {
+    category : Text;
+    city : Text;
+    date : Text;
+    driverRelevance : Text;
+    fetchedAt : Int;
+    id : Text;
+    isNew : Bool;
+    title : Text;
+    venue : Text
+  };
+type FleetExpenseEntry__995496119 =
+  {
+    amount : Float;
+    category : Text;
+    date : Int;
+    expenseId : Text;
+    notes : Text;
+    vehicleId : Text
+  };
+type FleetIncomeEntry__34319823 =
+  {
+    amount : Float;
+    date : Int;
+    incomeId : Text;
+    notes : Text;
+    platform : Text;
+    vehicleId : Text
+  };
+type FleetVehicle__754813885 =
+  {
+    color : ?Text;
+    dateAdded : Int;
+    make : Text;
+    model : Text;
+    notes : ?Text;
+    plateNumber : Text;
+    vehicleId : Text;
+    year : ?Nat
+  };
+type ForumChannel__367698501 = {#featureRequests; #whatILove; #whatNeedsWork};
+type ForumFlag__971016977 =
+  {
+    postId : ForumPostId__459260926;
+    reason : Text;
+    timestamp : Timestamp__609131916;
+    userId : UserId__1018364146
+  };
+type ForumLike__409800302 =
+  {
+    postId : ForumPostId__459260926;
+    timestamp : Timestamp__609131916;
+    userId : UserId__1018364146
+  };
+type ForumPostId__459260926 = Text;
+type ForumPost__161354061 =
+  {
+    authorId : UserId__1018364146;
+    channel : ForumChannel__367698501;
+    deleted : Bool;
+    flagCount : Nat;
+    id : ForumPostId__459260926;
+    isAnonymous : Bool;
+    likeCount : Nat;
+    parentId : ?ForumPostId__459260926;
+    replyCount : Nat;
+    text : Text;
+    timestamp : Timestamp__609131916;
+    voiceNoteKey : ?Text
+  };
+type FuelLog__669114662 =
+  {cost : Float; date : Int; distance : Float; fuelUsed : Float};
+type HyperframesJob__811479263 =
+  {
+    compositionHtml : Text;
+    createdAt : Int;
+    driverId : Text;
+    errorMsg : ?Text;
+    id : Text;
+    mp4Url : ?Text;
+    renderStatus : HyperframesRenderStatus__286243917;
+    topic : Text
+  };
+type HyperframesRenderStatus__286243917 =
+  {#failed; #pending; #ready; #rendering};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type LeadBatch__751757230 =
+  {
+    driverId : Text;
+    generatedAt : Int;
+    leads : [ScrapedLead__434771465];
+    totalRanked : Nat;
+    totalScraped : Nat;
+    weekNumber : Nat;
+    year : Nat
+  };
+type LeadStatus__653971529 =
+  {#dealClosed; #interested; #pending; #pitched; #rejected};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type MarkdownStatus__875022518 =
+  {#converting; #failed; #pending; #ready; #unsupported};
+type MessageAngle__719177996 =
+  {
+    #earnings_proof;
+    #feature_benefit;
+    #limited_time_offer;
+    #referral_incentive
+  };
+type MessageDeliveryStatus__113246790 = {#delivered; #failed; #read; #sent};
+type MessageDirection__778605192 = {#inbound; #outbound};
+type MetricEntry__143919892 =
+  {
+    durationMs : Nat;
+    error : ?Text;
+    isGateway : Bool;
+    model : Text;
+    timestamp : Int;
+    wasCached : Bool
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NdunaEmail__616881640 =
+  {
+    from : Text;
+    inboxId : Text;
+    isRead : Bool;
+    messageId : Text;
+    preview : Text;
+    receivedAt : Int;
+    subject : Text
+  };
+type NdunaRecommendationV2__208803323 =
+  {
+    confidence : ConfidenceLevel__57294445;
+    content : Text;
+    driverId : Text;
+    id : Text;
+    recommendationType : RecommendationType__695090994;
+    timestamp : Nat64
+  };
+type NdunaRecommendation__708462431 =
+  {
+    confidence : Text;
+    content : Text;
+    driverId : Text;
+    recommendationType : Text;
+    timestamp : Nat64
+  };
+type NdunaSystemPromptState__773234738 =
+  {
+    basePrompt : Text;
+    evolutionCount : Nat;
+    evolutionDelta : Text;
+    lastEvolved : ?Int
+  };
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OldDocumentRecord__102403771 =
+  {
+    deleted : Bool;
+    docType : OldDocumentType__693281923;
+    driverId : Text;
+    fileName : Text;
+    id : Text;
+    notes : Text;
+    storageRef : Text;
+    uploadedAt : Int
+  };
+type OldDocumentType__693281923 = {#invoice; #licence; #other; #registration};
+type OpportunityCategory__895643142 =
+  {
+    #businessLead;
+    #incomeCategory;
+    #intercityRoute;
+    #newPlatform;
+    #platformPromotion;
+    #regulatoryChange
+  };
+type OpportunityFinding__292619450 =
+  {
+    category : OpportunityCategory__895643142;
+    description : Text;
+    discoveredAt : Int;
+    dismissed : Bool;
+    driverId : Text;
+    expiresAt : Int;
+    id : Text;
+    relevanceScore : Nat;
+    source : Text;
+    title : Text
+  };
+type OpportunityScan__439465197 =
+  {
+    driverId : Text;
+    error : ?Text;
+    findings : [Text];
+    scanDate : Int;
+    scanId : Text;
+    status : Text
+  };
+type OrbisListingConfig__946899464 =
+  {
+    autoPublish : Bool;
+    listingName : Text;
+    pricePerCall : Float;
+    providerApiKey : Text
+  };
+type OrbisListingStatus__999979879 =
+  {listed : Bool; listingId : ?Text; totalCalls : Nat; usdcEarned : Float};
+type OrderItem__592186033 =
+  {productName : Text; quantity : Nat; unitPrice : Float};
+type OutcomeEvent__468202555 =
+  {outcome : Text; recommendationId : Text; timestamp : Int};
+type PassengerOrder__554358408 =
+  {
+    driverName : Text;
+    items : [OrderItem__592186033];
+    orderId : Text;
+    passengerNote : Text;
+    paymentMethod : Text;
+    timestamp : Int;
+    totalAmount : Float
+  };
+type PitchStatus__360653546 =
+  {#abandoned; #closed; #interested; #negotiating; #rejected; #sent; #viewed};
+type PostStatus__560854787 = {#failed; #posted; #scheduled};
+type PostingSchedule__148334467 =
+  {
+    driverId : Text;
+    enabled : Bool;
+    platformsEnabled : [SocialPlatform__897261268];
+    postsPerWeek : Nat;
+    preferredDays : [Nat];
+    preferredHourUtc : Nat
+  };
+type PresentationData__822755951 =
+  {
+    generatedAt : Int;
+    id : Text;
+    shareToken : Text;
+    slides : [Slide__11897383]
+  };
+type Product__853085059 =
+  {currentStock : Nat; name : Text; productId : Text; sellingPrice : Float};
+type RecommendationOutcomeV2__1027547134 =
+  {
+    action : DriverAction__991570276;
+    driverId : Text;
+    notes : ?Text;
+    recommendationId : Text;
+    recordedAt : Nat64;
+    revenue : ?Nat
+  };
+type RecommendationOutcome__886236629 =
+  {
+    driverAction : ?Text;
+    outcome : ?Text;
+    recommendationId : Nat;
+    revenue : ?Nat;
+    timestamp : Nat64
+  };
+type RecommendationType__695090994 = {#advertising; #product; #surge};
+type ReferralCode__68101573 =
+  {
+    code : Text;
+    createdAt : Int;
+    ownerId : Text;
+    ownerName : Text;
+    timesUsed : Nat;
+    totalEarned : Float
+  };
+type ReferralConfig__572289324 =
+  {
+    bonusDescription : Text;
+    bonusPerReferral : Float;
+    bonusSource : Text;
+    enabled : Bool;
+    minTripsToQualify : Nat
+  };
+type ReferralUse__883031573 =
+  {
+    bonusAmount : Float;
+    bonusPaid : Bool;
+    code : Text;
+    referredUserId : Text;
+    usedAt : Int
+  };
+type RouteOptIn__1022079996 =
+  {
+    driverId : Text;
+    optedInAt : Int;
+    primaryRoute : SAZone__963780416;
+    secondaryRoute : ?SAZone__963780416
+  };
+type SAZone__963780416 =
+  {
+    #CapeTownCBD;
+    #DurbanBeachfront;
+    #Generic;
+    #JohannesburgCBD;
+    #Midrand;
+    #PretoriaCBD;
+    #Sandton;
+    #Soweto;
+    #Umhlanga
+  };
+type Sale__221607697 =
+  {
+    date : Int;
+    productName : Text;
+    quantity : Nat;
+    saleId : Text;
+    totalAmount : Float
+  };
+type SchedulerConfig__699112068 =
+  {dayOfWeek : Nat; enabled : Bool; hour : Nat};
+type ScrapedLead__434771465 =
+  {
+    address : Text;
+    browserbaseEnriched : ?BrowserbaseCompanyResult__112059121;
+    companyName : Text;
+    compositeScore : Nat;
+    driverId : Text;
+    email : Text;
+    exaEnriched : ?ExaCompanyResult__986626020;
+    id : Text;
+    industry : Text;
+    phone : Text;
+    scoringFactors : Text;
+    scrapedAt : Int;
+    source : Text;
+    status : LeadStatus__653971529;
+    tavilyHiringSignal : Bool;
+    tavilySnippet : Text;
+    website : Text;
+    weekNumber : Nat;
+    year : Nat
+  };
+type ScraperAuditLog__292901671 =
+  {
+    companiesFound : Nat;
+    driverId : Text;
+    errorMessage : ?Text;
+    id : Text;
+    source : Text;
+    success : Bool;
+    timestamp : Int;
+    url : Text
+  };
+type Shift__261115225 =
+  {
+    date : Int;
+    endTime : Text;
+    notes : Text;
+    shiftId : Text;
+    startTime : Text;
+    status : Text;
+    targetEarnings : Float
+  };
+type ShortsJob__384201411 =
+  {
+    clipStatus : ShortsStatus__295000042;
+    createdAt : Int;
+    driverId : Principal;
+    errorMsg : ?Text;
+    id : Text;
+    outputMp4Url : ?Text;
+    selectedSegmentEnd : ?Nat;
+    selectedSegmentStart : ?Nat;
+    sourceType : {#upload; #youtube};
+    sourceUrl : Text
+  };
+type ShortsStatus__295000042 =
+  {#failed; #pending; #ready; #rendering; #selecting; #transcribing};
+type Slide__11897383 =
+  {
+    bullets : [Text];
+    dataPoint : ?Text;
+    slideType : Text;
+    speakerNotes : Text;
+    title : Text
+  };
+type SocialPlatform__897261268 = {#instagram; #linkedin; #tiktok; #youtube};
+type StakingRecord__991008118 =
+  {
+    dissolveDelayDays : Nat;
+    icpAmount : Float;
+    notes : Text;
+    stakeId : Text;
+    startDate : Int
+  };
+type StripeConfiguration__96897619 =
+  {allowedCountries : [Text]; secretKey : Text};
+type TaskItem__961896334 =
+  {
+    capability : Text;
+    description : Text;
+    reward : Float;
+    taskId : Text;
+    title : Text
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__609131916 = Timestamp__301639476;
+type Trip__14129367 =
+  {
+    amount : Float;
+    date : Int;
+    durationMinutes : Nat;
+    notes : Text;
+    platform : Text;
+    tripId : Text
+  };
+type UploadPostConfig__1073487293 = {accountId : Text; apiKey : Text};
+type UploadStatus__513275546 = {#failed; #pending; #processing; #ready};
+type UserId__1018364146 = UserId__158757552;
+type UserId__158757552 = Principal;
+type UserId__313180070 = Principal;
+type UserProfile__491224006 =
+  {
+    currencyCode : Text;
+    displayName : Text;
+    fuelConsumptionRate : Float;
+    subscriptionTier : Nat;
+    vehicleName : Text;
+    voiceEnabled : Bool
+  };
+type UserRole__1054455867 = {#admin; #guest; #user};
+type VideoAnalytics__638635831 =
+  {
+    comments : Nat;
+    engagementRate : Float;
+    fetchedAt : Int;
+    likes : Nat;
+    platform : SocialPlatform__897261268;
+    postId : Text;
+    shares : Nat;
+    views : Nat
+  };
+type VideoClip__597155695 =
+  {
+    brandedStorageRef : ?Text;
+    captionsVttRef : ?Text;
+    driverId : Text;
+    durationSec : Float;
+    endSec : Float;
+    errorMsg : ?Text;
+    id : Text;
+    processingStatus : ClipStatus__270437203;
+    startSec : Float;
+    storageRef : Text;
+    title : ?Text;
+    uploadId : Text
+  };
+type VideoPost__409361528 =
+  {
+    clipId : Text;
+    driverId : Text;
+    errorMsg : ?Text;
+    id : Text;
+    platform : SocialPlatform__897261268;
+    platformPostId : ?Text;
+    postedAt : ?Int;
+    scheduledAt : ?Int;
+    status : PostStatus__560854787
+  };
+type VideoUpload__460629345 =
+  {
+    contentType : Text;
+    driverId : Text;
+    errorMsg : ?Text;
+    fileName : Text;
+    fileSizeBytes : Nat;
+    id : Text;
+    processingStatus : UploadStatus__513275546;
+    storageRef : Text;
+    uploadedAt : Int
+  };
+type VoiceUsage__627666231 = {count : Nat; date : Int};
+type WebsiteJobStatus__963856534 = {#failed; #generating; #pending; #ready};
+type WebsiteJob__756952975 =
+  {
+    createdAt : Int;
+    driverId : Text;
+    errorMsg : ?Text;
+    htmlContent : ?Text;
+    id : Text;
+    iteration : Nat;
+    shareUrl : ?Text;
+    status : WebsiteJobStatus__963856534;
+    topic : Text;
+    updatedAt : Int
+  };
+type WeeklyBriefingState__378310343 =
+  {
+    briefingDayOfWeek : Nat;
+    briefingHour : Nat;
+    enabled : Bool;
+    lastSentAt : ?Int
+  };
+type WhatsAppConfig__954487848 =
+  {apiKey : Text; phoneNumber : Text; webhookSecret : Text};
+type WhatsAppConversationEntry__115856186 =
+  {
+    body : Text;
+    channel : ConversationChannel__408289708;
+    deliveryStatus : MessageDeliveryStatus__113246790;
+    direction : MessageDirection__778605192;
+    driverId : Text;
+    errorMsg : ?Text;
+    mediaStorageRef : ?Text;
+    messageId : Text;
+    timestamp : Int
+  };
+type WhatsAppRateLimit__881136461 =
+  {messageCount : Nat; phoneNumber : Text; windowStartMs : Int};
+type WhisperConfig__316944054 = {apiKey : Text};
+type WhisperConfig__633541279 = {apiKey : Text; model : Text};
+type XPostStatus__28113788 = {#failed; #pending; #posted; #scheduled};
+type XPostType__85614079 =
+  {#DriverWin; #IncomeTip; #SAIntelligence; #TaskOutcome};
+type XPost__164775881 =
+  {
+    content : Text;
+    id : Nat;
+    impressionsCount : Nat;
+    likesCount : Nat;
+    postType : XPostType__85614079;
+    postedAt : ?Int;
+    repliesCount : Nat;
+    retweetsCount : Nat;
+    status : XPostStatus__28113788;
+    xPostId : ?Text
+  };
+type XPostingConfig__740082889 =
+  {
+    earningsThresholdUsd : Nat;
+    isUnlocked : Bool;
+    lastPostAt : ?Int;
+    monthlyEarningsCents : Nat;
+    totalPostsPublished : Nat;
+    xAccessToken : Text;
+    xAccessTokenSecret : Text;
+    xApiKey : Text;
+    xApiSecret : Text
+  };
+actor ({
+  stable BB_FOURTEEN_DAYS_NS : Int;
+  stable DAILY_LIMIT : Nat;
+  stable DEFAULT_SA_HUNT_URLS : [Text];
+  stable FOURTEEN_DAYS_NS : Int;
+  stable MAX_JOBS_HISTORY : Nat;
+  stable MAX_RENDERS_PER_DAY : Nat;
+  stable MAX_SHORTS_HISTORY : Nat;
+  stable MAX_SHORTS_PER_DAY : Nat;
+  stable NEW_WINDOW : Int;
+  stable RATE_LIMIT_MAX : Nat;
+  stable RATE_LIMIT_WINDOW_NS : Int;
+  stable TIER1_PRICE : Nat;
+  stable TIER2_PRICE : Nat;
+  stable TIER3_PRICE : Nat;
+  stable WEEKLY_INTERVAL : Int;
+  stable var _shiftCounter : Nat;
+  stable var _tripCounter : Nat;
+  stable abTestResultsStore :
+    {
+      var root : Node__46230540<Text, AbTestResult__688771166>;
+      var size : Nat__490723111
+    };
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1054455867>
+    };
+  stable advOutcomes :
+    {
+      var root : Node__46230540<Text, RecommendationOutcomeV2__1027547134>;
+      var size : Nat__490723111
+    };
+  stable advRecommendations :
+    {
+      var root : Node__46230540<Text, NdunaRecommendationV2__208803323>;
+      var size : Nat__490723111
+    };
+  stable agentConversations :
+    {
+      var root : Node__46230540<Principal, ConversationState__781423477>;
+      var size : Nat__490723111
+    };
+  stable agentMailConfigStore : {var value : AgentMailConfig__698294453};
+  stable aiGatewayApiKeyStore : {var value : ?Text};
+  stable aiGatewayUrlStore : {var value : ?Text};
+  stable analyticsState :
+    {events : List__415060402<AnalyticsEvent__38019333>; var nextId : Nat};
+  stable auditLogMap :
+    {
+      var root : Node__46230540<Text, ScraperAuditLog__292901671>;
+      var size : Nat__490723111
+    };
+  stable behavioralEvents :
+    {
+      var root :
+        Node__46230540<Principal, List__415060402<BehavioralEvent__234146519>>;
+      var size : Nat__490723111
+    };
+  stable brianApiKeyStore : {var value : Text};
+  stable browserbaseApiKeyStore : {var value : Text};
+  stable camofoxBaseUrlStore : {var value : Text};
+  stable campaignConfigStore : {var value : CampaignConfig__643301174};
+  stable campaignConversionEvents :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CampaignConversionEvent__268834852]];
+      var elementIndex : Nat__490723111
+    };
+  stable campaignFailureLogStore :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CampaignFailureLog__628149433]];
+      var elementIndex : Nat__490723111
+    };
+  stable campaignIdCounterStore : {var value : Nat};
+  stable campaignSendsMapStore :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable campaignStore :
+    {
+      var root : Node__46230540<Text, Campaign__550041787>;
+      var size : Nat__490723111
+    };
+  stable cmcApiKeyStore : {var value : Text};
+  stable companyPitches :
+    {
+      var root : Node__46230540<Text, CompanyPitch__91840286>;
+      var size : Nat__490723111
+    };
+  stable competitiveProfiles :
+    {
+      var root : Node__46230540<Text, DriverCompetitiveProfile__397868874>;
+      var size : Nat__490723111
+    };
+  stable docVaultNotesEnabled : {var value : Bool};
+  in documentsMap : Map__605269027<Text, OldDocumentRecord__102403771>;
+  stable driverAnalyticsProfiles :
+    {
+      var root : Node__46230540<Principal, DriverAnalyticsProfile__367236056>;
+      var size : Nat__490723111
+    };
+  stable driverDocIndex :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable driverEmailIndex :
+    {var root : Node__46230540<Text, Text>; var size : Nat__490723111};
+  stable driverEmailLogs :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable driverMemories :
+    {
+      var root : Node__46230540<Principal, DriverMemory__391670615>;
+      var size : Nat__490723111
+    };
+  stable driverMemoryEntries :
+    {
+      var root :
+        Node__46230540<Principal,
+                        List__415060402<DriverMemoryEntry__277013187>>;
+      var size : Nat__490723111
+    };
+  stable driverNameIndex :
+    {
+      var root : Node__46230540<Text, UserId__313180070>;
+      var size : Nat__490723111
+    };
+  stable driverOpportunityIndex :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable driverRatings :
+    {var root : Node__46230540<Principal, Float>; var size : Nat__490723111};
+  stable driverWebsiteJobs :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable elevenLabsAgentIdStore : {var value : Text};
+  stable var elevenLabsApiKey : Text;
+  stable elevenLabsApiKeyStore : {var value : Text};
+  stable emailLogs :
+    {
+      var root : Node__46230540<Text, EmailLog__792473754>;
+      var size : Nat__490723111
+    };
+  stable events :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Event__492135844>>;
+      var size : Nat__490723111
+    };
+  stable exaApiKeyStore : {var value : Text};
+  stable expenses :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, ExpenseEntry__804719860>>;
+      var size : Nat__490723111
+    };
+  stable exposureValidations :
+    {
+      var root : Node__46230540<Text, ExposureValidation__784379930>;
+      var size : Nat__490723111
+    };
+  stable fetchedEventsRaw : [FetchedEvent__705930427];
+  stable fetchedEventsStore : {var value : [FetchedEvent__705930427]};
+  stable fleetExpensesStore :
+    {
+      var root :
+        Node__46230540<Text,
+                        Map__605269027<Text, FleetExpenseEntry__995496119>>;
+      var size : Nat__490723111
+    };
+  stable fleetIncomeStore :
+    {
+      var root :
+        Node__46230540<Text, Map__605269027<Text, FleetIncomeEntry__34319823>>;
+      var size : Nat__490723111
+    };
+  stable fleetVehiclesStore :
+    {
+      var root :
+        Node__46230540<Text, Map__605269027<Text, FleetVehicle__754813885>>;
+      var size : Nat__490723111
+    };
+  stable forumFlags :
+    {
+      var root : Node__46230540<Text, ForumFlag__971016977>;
+      var size : Nat__490723111
+    };
+  stable forumLikes :
+    {
+      var root : Node__46230540<Text, ForumLike__409800302>;
+      var size : Nat__490723111
+    };
+  stable forumPosts :
+    {
+      var root : Node__46230540<ForumPostId__459260926, ForumPost__161354061>;
+      var size : Nat__490723111
+    };
+  stable fuelLogs :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Int, FuelLog__669114662>>;
+      var size : Nat__490723111
+    };
+  stable gatewayMetricsState :
+    {
+      var cacheHits : Nat;
+      var cacheMisses : Nat;
+      var elevenlabsSavedCents : Nat;
+      entries : List__415060402<MetricEntry__143919892>;
+      hourlyRequests : Map__605269027<Text, Nat>;
+      latencySamples : List__415060402<Nat>;
+      var openRouterSavedCents : Nat
+    };
+  stable goals :
+    {
+      var root : Node__46230540<UserId__313180070, EarningsGoal__172673500>;
+      var size : Nat__490723111
+    };
+  stable googleMapsApiKeyRaw : Text;
+  stable googleMapsApiKeyStore : {var value : Text};
+  stable hermesHistory :
+    {
+      var root :
+        Node__46230540<Principal, List__415060402<AgentMessage__117438709>>;
+      var size : Nat__490723111
+    };
+  stable hfDayRateCounts :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable hfDayRateKey : {var value : Text};
+  stable hfDriverIndex :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable hfJobs :
+    {
+      var root : Node__46230540<Text, HyperframesJob__811479263>;
+      var size : Nat__490723111
+    };
+  stable hfVpsKey : {var value : Text};
+  stable hfVpsUrl : {var value : Text};
+  stable hunterVpsKey : {var value : Text};
+  stable hunterVpsUrl : {var value : Text};
+  stable lastFetchState : {var lastFetchTime : Int};
+  stable lastLeadRefreshPerDriver :
+    {var root : Node__46230540<Text, Int>; var size : Nat__490723111};
+  stable leadBatchesMap :
+    {
+      var root : Node__46230540<Text, LeadBatch__751757230>;
+      var size : Nat__490723111
+    };
+  stable leadsMap :
+    {
+      var root : Node__46230540<Text, ScrapedLead__434771465>;
+      var size : Nat__490723111
+    };
+  stable ndunaInboxMessagesStore : {var value : [NdunaEmail__616881640]};
+  stable ndunaOutcomes :
+    {
+      var root : Node__46230540<Nat, RecommendationOutcome__886236629>;
+      var size : Nat__490723111
+    };
+  stable ndunaPromptState : {var value : NdunaSystemPromptState__773234738};
+  stable ndunaRecommendations :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?NdunaRecommendation__708462431]];
+      var elementIndex : Nat__490723111
+    };
+  stable openClawApiKeyRaw : ?Text;
+  stable openClawApiKeyStore : {var value : ?Text};
+  stable openClawApiUrlRaw : Text;
+  stable openClawApiUrlStore : {var value : Text};
+  stable openClawModelRaw : Text;
+  stable openClawModelStore : {var value : Text};
+  stable opportunityFindings :
+    {
+      var root : Node__46230540<Text, OpportunityFinding__292619450>;
+      var size : Nat__490723111
+    };
+  stable opportunityScans :
+    {
+      var root : Node__46230540<Text, OpportunityScan__439465197>;
+      var size : Nat__490723111
+    };
+  stable orbisApiKeyStore : {var value : Text};
+  stable orbisListingStatusStore :
+    {var value : OrbisListingStatus__999979879};
+  stable orbisPublisherConfigStore :
+    {var value : ?OrbisListingConfig__946899464};
+  stable outcomeEvents :
+    {
+      var root :
+        Node__46230540<Principal, List__415060402<OutcomeEvent__468202555>>;
+      var size : Nat__490723111
+    };
+  stable passengerOrders :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, PassengerOrder__554358408>>;
+      var size : Nat__490723111
+    };
+  stable var passengerOrdersDayKey : Text;
+  stable passengerOrdersPerDay :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable paymentConfigs :
+    {
+      var root :
+        Node__46230540<UserId__313180070, DriverPaymentConfig__287052803>;
+      var size : Nat__490723111
+    };
+  stable var pilotMode : Bool;
+  stable pilotModeStore : {var value : Bool};
+  stable presentationsMap :
+    {
+      var root : Node__46230540<Text, PresentationData__822755951>;
+      var size : Nat__490723111
+    };
+  stable processedReferralBonuses :
+    {var root : Node__46230540<Text, Int>; var size : Nat__490723111};
+  stable processingRateLimits :
+    {
+      var root : Node__46230540<Text, {count : Nat; date : Int}>;
+      var size : Nat__490723111
+    };
+  stable products :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Product__853085059>>;
+      var size : Nat__490723111
+    };
+  stable profiles :
+    {
+      var root : Node__46230540<UserId__313180070, UserProfile__491224006>;
+      var size : Nat__490723111
+    };
+  stable rateLimiterState :
+    {
+      buckets : Map__605269027<Text, DailyBucket__949751508>;
+      var lastResetDate : Text
+    };
+  stable referralCodes :
+    {
+      var root : Node__46230540<Text, ReferralCode__68101573>;
+      var size : Nat__490723111
+    };
+  stable referralConfigStore : {var value : ReferralConfig__572289324};
+  stable referralCreditBalances :
+    {var root : Node__46230540<Text, Float>; var size : Nat__490723111};
+  stable referralUses :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ReferralUse__883031573]];
+      var elementIndex : Nat__490723111
+    };
+  stable routeOptIns :
+    {
+      var root : Node__46230540<Text, RouteOptIn__1022079996>;
+      var size : Nat__490723111
+    };
+  stable sales :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Sale__221607697>>;
+      var size : Nat__490723111
+    };
+  stable schedulerConfigStore : {var value : SchedulerConfig__699112068};
+  stable shifts :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Shift__261115225>>;
+      var size : Nat__490723111
+    };
+  stable shortsDayRateCounts :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable shortsDayRateKey : {var value : Text};
+  stable shortsDriverIndex :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable shortsJobs :
+    {
+      var root : Node__46230540<Text, ShortsJob__384201411>;
+      var size : Nat__490723111
+    };
+  stable snapScanMerchantApiKeyStore : {var value : Text};
+  stable snapScanMerchantIdStore : {var value : Text};
+  stable snapScanWebhookSecretStore : {var value : Text};
+  stable stakingRecords :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, StakingRecord__991008118>>;
+      var size : Nat__490723111
+    };
+  stable var stripeConfiguration : ?StripeConfiguration__96897619;
+  stable tavilyApiKeyStore : {var value : Text};
+  stable tavilyCallCountStore : {var value : Nat};
+  stable tavilyMonthStore : {var value : Nat};
+  stable tomTomApiKeyRaw : Text;
+  stable tomTomApiKeyStore : {var value : Text};
+  stable trips :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Trip__14129367>>;
+      var size : Nat__490723111
+    };
+  stable uploadPostConfigStore : {var value : ?UploadPostConfig__1073487293};
+  stable usdcZarRateCache : {var value : ?(Float, Int)};
+  stable videoAnalytics :
+    {
+      var root : Node__46230540<Text, [VideoAnalytics__638635831]>;
+      var size : Nat__490723111
+    };
+  stable videoBrandingConfigs :
+    {
+      var root : Node__46230540<Text, BrandingConfig__665846122>;
+      var size : Nat__490723111
+    };
+  stable videoClips :
+    {
+      var root : Node__46230540<Text, VideoClip__597155695>;
+      var size : Nat__490723111
+    };
+  stable videoPostingSchedules :
+    {
+      var root : Node__46230540<Text, PostingSchedule__148334467>;
+      var size : Nat__490723111
+    };
+  stable videoPosts :
+    {
+      var root : Node__46230540<Text, VideoPost__409361528>;
+      var size : Nat__490723111
+    };
+  stable videoUploads :
+    {
+      var root : Node__46230540<Text, VideoUpload__460629345>;
+      var size : Nat__490723111
+    };
+  stable videoWhisperConfigStore : {var value : ?WhisperConfig__316944054};
+  stable voiceUsage :
+    {
+      var root : Node__46230540<UserId__313180070, VoiceUsage__627666231>;
+      var size : Nat__490723111
+    };
+  stable websiteBuilderDailyCount :
+    {var root : Node__46230540<Text, (Nat, Int)>; var size : Nat__490723111};
+  stable websiteJobs :
+    {
+      var root : Node__46230540<Text, WebsiteJob__756952975>;
+      var size : Nat__490723111
+    };
+  stable weeklyBriefingState : {var value : WeeklyBriefingState__378310343};
+  stable whatsappConfigStore : {var value : ?WhatsAppConfig__954487848};
+  stable whatsappMessages :
+    {
+      var root : Node__46230540<Text, WhatsAppConversationEntry__115856186>;
+      var size : Nat__490723111
+    };
+  stable whatsappPhoneIndex :
+    {var root : Node__46230540<Text, Principal>; var size : Nat__490723111};
+  stable whatsappRateLimits :
+    {
+      var root : Node__46230540<Text, WhatsAppRateLimit__881136461>;
+      var size : Nat__490723111
+    };
+  stable whatsappWhisperConfigStore : {var value : ?WhisperConfig__633541279};
+  stable xPostIdCounterStore : {var value : Nat};
+  stable xPostingConfigStore : {var value : XPostingConfig__740082889};
+  stable xPostsStore :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?XPost__164775881]];
+      var elementIndex : Nat__490723111
+    };
+  stable zeroXWorkActiveTaskIdStore : {var value : ?Text};
+  stable zeroXWorkApiKeyStore : {var value : Text};
+  stable zeroXWorkCachedTasksStore : {var value : [TaskItem__961896334]};
+  stable zeroXWorkRegisteredStore : {var value : Bool};
+  stable zeroXWorkTasksCompletedStore : {var value : Nat};
+  stable zeroXWorkTotalUSDCEarnedStore : {var value : Float};
+  stable zeroXWorkWalletAddressStore : {var value : Text}
+}, {
+  stable BB_FOURTEEN_DAYS_NS : Int;
+  stable DAILY_LIMIT : Nat;
+  stable DEFAULT_SA_HUNT_URLS : [Text];
+  stable FOURTEEN_DAYS_NS : Int;
+  stable MAX_JOBS_HISTORY : Nat;
+  stable MAX_RENDERS_PER_DAY : Nat;
+  stable MAX_SHORTS_HISTORY : Nat;
+  stable MAX_SHORTS_PER_DAY : Nat;
+  stable NEW_WINDOW : Int;
+  stable RATE_LIMIT_MAX : Nat;
+  stable RATE_LIMIT_WINDOW_NS : Int;
+  stable TIER1_PRICE : Nat;
+  stable TIER2_PRICE : Nat;
+  stable TIER3_PRICE : Nat;
+  stable WEEKLY_INTERVAL : Int;
+  stable var _shiftCounter : Nat;
+  stable var _tripCounter : Nat;
+  stable abTestResultsStore :
+    {
+      var root : Node__46230540<Text, AbTestResult__688771166>;
+      var size : Nat__490723111
+    };
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1054455867>
+    };
+  stable advOutcomes :
+    {
+      var root : Node__46230540<Text, RecommendationOutcomeV2__1027547134>;
+      var size : Nat__490723111
+    };
+  stable advRecommendations :
+    {
+      var root : Node__46230540<Text, NdunaRecommendationV2__208803323>;
+      var size : Nat__490723111
+    };
+  stable agentConversations :
+    {
+      var root : Node__46230540<Principal, ConversationState__781423477>;
+      var size : Nat__490723111
+    };
+  stable agentMailConfigStore : {var value : AgentMailConfig__698294453};
+  stable aiGatewayApiKeyStore : {var value : ?Text};
+  stable aiGatewayUrlStore : {var value : ?Text};
+  stable analyticsState :
+    {events : List__415060402<AnalyticsEvent__38019333>; var nextId : Nat};
+  stable auditLogMap :
+    {
+      var root : Node__46230540<Text, ScraperAuditLog__292901671>;
+      var size : Nat__490723111
+    };
+  stable behavioralEvents :
+    {
+      var root :
+        Node__46230540<Principal, List__415060402<BehavioralEvent__234146519>>;
+      var size : Nat__490723111
+    };
+  stable brianApiKeyStore : {var value : Text};
+  stable browserbaseApiKeyStore : {var value : Text};
+  stable camofoxBaseUrlStore : {var value : Text};
+  stable campaignConfigStore : {var value : CampaignConfig__643301174};
+  stable campaignConversionEvents :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CampaignConversionEvent__268834852]];
+      var elementIndex : Nat__490723111
+    };
+  stable campaignFailureLogStore :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?CampaignFailureLog__628149433]];
+      var elementIndex : Nat__490723111
+    };
+  stable campaignIdCounterStore : {var value : Nat};
+  stable campaignSendsMapStore :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable campaignStore :
+    {
+      var root : Node__46230540<Text, Campaign__550041787>;
+      var size : Nat__490723111
+    };
+  stable cmcApiKeyStore : {var value : Text};
+  stable companyPitches :
+    {
+      var root : Node__46230540<Text, CompanyPitch__91840286>;
+      var size : Nat__490723111
+    };
+  stable competitiveProfiles :
+    {
+      var root : Node__46230540<Text, DriverCompetitiveProfile__397868874>;
+      var size : Nat__490723111
+    };
+  stable docVaultNotesEnabled : {var value : Bool};
+  stable documentsMap :
+    {
+      var root : Node__46230540<Text, DocumentRecord__870998661>;
+      var size : Nat__490723111
+    };
+  stable driverAnalyticsProfiles :
+    {
+      var root : Node__46230540<Principal, DriverAnalyticsProfile__367236056>;
+      var size : Nat__490723111
+    };
+  stable driverDocIndex :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable driverEmailIndex :
+    {var root : Node__46230540<Text, Text>; var size : Nat__490723111};
+  stable driverEmailLogs :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable driverMemories :
+    {
+      var root : Node__46230540<Principal, DriverMemory__391670615>;
+      var size : Nat__490723111
+    };
+  stable driverMemoryEntries :
+    {
+      var root :
+        Node__46230540<Principal,
+                        List__415060402<DriverMemoryEntry__277013187>>;
+      var size : Nat__490723111
+    };
+  stable driverNameIndex :
+    {
+      var root : Node__46230540<Text, UserId__313180070>;
+      var size : Nat__490723111
+    };
+  stable driverOpportunityIndex :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable driverRatings :
+    {var root : Node__46230540<Principal, Float>; var size : Nat__490723111};
+  stable driverWebsiteJobs :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable elevenLabsAgentIdStore : {var value : Text};
+  stable var elevenLabsApiKey : Text;
+  stable elevenLabsApiKeyStore : {var value : Text};
+  stable emailLogs :
+    {
+      var root : Node__46230540<Text, EmailLog__792473754>;
+      var size : Nat__490723111
+    };
+  stable events :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Event__492135844>>;
+      var size : Nat__490723111
+    };
+  stable exaApiKeyStore : {var value : Text};
+  stable expenses :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, ExpenseEntry__804719860>>;
+      var size : Nat__490723111
+    };
+  stable exposureValidations :
+    {
+      var root : Node__46230540<Text, ExposureValidation__784379930>;
+      var size : Nat__490723111
+    };
+  stable fetchedEventsRaw : [FetchedEvent__705930427];
+  stable fetchedEventsStore : {var value : [FetchedEvent__705930427]};
+  stable fleetExpensesStore :
+    {
+      var root :
+        Node__46230540<Text,
+                        Map__605269027<Text, FleetExpenseEntry__995496119>>;
+      var size : Nat__490723111
+    };
+  stable fleetIncomeStore :
+    {
+      var root :
+        Node__46230540<Text, Map__605269027<Text, FleetIncomeEntry__34319823>>;
+      var size : Nat__490723111
+    };
+  stable fleetVehiclesStore :
+    {
+      var root :
+        Node__46230540<Text, Map__605269027<Text, FleetVehicle__754813885>>;
+      var size : Nat__490723111
+    };
+  stable forumFlags :
+    {
+      var root : Node__46230540<Text, ForumFlag__971016977>;
+      var size : Nat__490723111
+    };
+  stable forumLikes :
+    {
+      var root : Node__46230540<Text, ForumLike__409800302>;
+      var size : Nat__490723111
+    };
+  stable forumPosts :
+    {
+      var root : Node__46230540<ForumPostId__459260926, ForumPost__161354061>;
+      var size : Nat__490723111
+    };
+  stable fuelLogs :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Int, FuelLog__669114662>>;
+      var size : Nat__490723111
+    };
+  stable gatewayMetricsState :
+    {
+      var cacheHits : Nat;
+      var cacheMisses : Nat;
+      var elevenlabsSavedCents : Nat;
+      entries : List__415060402<MetricEntry__143919892>;
+      hourlyRequests : Map__605269027<Text, Nat>;
+      latencySamples : List__415060402<Nat>;
+      var openRouterSavedCents : Nat
+    };
+  stable goals :
+    {
+      var root : Node__46230540<UserId__313180070, EarningsGoal__172673500>;
+      var size : Nat__490723111
+    };
+  stable googleMapsApiKeyRaw : Text;
+  stable googleMapsApiKeyStore : {var value : Text};
+  stable hermesHistory :
+    {
+      var root :
+        Node__46230540<Principal, List__415060402<AgentMessage__117438709>>;
+      var size : Nat__490723111
+    };
+  stable hfDayRateCounts :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable hfDayRateKey : {var value : Text};
+  stable hfDriverIndex :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable hfJobs :
+    {
+      var root : Node__46230540<Text, HyperframesJob__811479263>;
+      var size : Nat__490723111
+    };
+  stable hfVpsKey : {var value : Text};
+  stable hfVpsUrl : {var value : Text};
+  stable hunterVpsKey : {var value : Text};
+  stable hunterVpsUrl : {var value : Text};
+  stable lastFetchState : {var lastFetchTime : Int};
+  stable lastLeadRefreshPerDriver :
+    {var root : Node__46230540<Text, Int>; var size : Nat__490723111};
+  stable leadBatchesMap :
+    {
+      var root : Node__46230540<Text, LeadBatch__751757230>;
+      var size : Nat__490723111
+    };
+  stable leadsMap :
+    {
+      var root : Node__46230540<Text, ScrapedLead__434771465>;
+      var size : Nat__490723111
+    };
+  stable ndunaInboxMessagesStore : {var value : [NdunaEmail__616881640]};
+  stable ndunaOutcomes :
+    {
+      var root : Node__46230540<Nat, RecommendationOutcome__886236629>;
+      var size : Nat__490723111
+    };
+  stable ndunaPromptState : {var value : NdunaSystemPromptState__773234738};
+  stable ndunaRecommendations :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?NdunaRecommendation__708462431]];
+      var elementIndex : Nat__490723111
+    };
+  stable openClawApiKeyRaw : ?Text;
+  stable openClawApiKeyStore : {var value : ?Text};
+  stable openClawApiUrlRaw : Text;
+  stable openClawApiUrlStore : {var value : Text};
+  stable openClawModelRaw : Text;
+  stable openClawModelStore : {var value : Text};
+  stable opportunityFindings :
+    {
+      var root : Node__46230540<Text, OpportunityFinding__292619450>;
+      var size : Nat__490723111
+    };
+  stable opportunityScans :
+    {
+      var root : Node__46230540<Text, OpportunityScan__439465197>;
+      var size : Nat__490723111
+    };
+  stable orbisApiKeyStore : {var value : Text};
+  stable orbisListingStatusStore :
+    {var value : OrbisListingStatus__999979879};
+  stable orbisPublisherConfigStore :
+    {var value : ?OrbisListingConfig__946899464};
+  stable outcomeEvents :
+    {
+      var root :
+        Node__46230540<Principal, List__415060402<OutcomeEvent__468202555>>;
+      var size : Nat__490723111
+    };
+  stable passengerOrders :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, PassengerOrder__554358408>>;
+      var size : Nat__490723111
+    };
+  stable var passengerOrdersDayKey : Text;
+  stable passengerOrdersPerDay :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable paymentConfigs :
+    {
+      var root :
+        Node__46230540<UserId__313180070, DriverPaymentConfig__287052803>;
+      var size : Nat__490723111
+    };
+  stable var pilotMode : Bool;
+  stable pilotModeStore : {var value : Bool};
+  stable presentationsMap :
+    {
+      var root : Node__46230540<Text, PresentationData__822755951>;
+      var size : Nat__490723111
+    };
+  stable processedReferralBonuses :
+    {var root : Node__46230540<Text, Int>; var size : Nat__490723111};
+  stable processingRateLimits :
+    {
+      var root : Node__46230540<Text, {count : Nat; date : Int}>;
+      var size : Nat__490723111
+    };
+  stable products :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Product__853085059>>;
+      var size : Nat__490723111
+    };
+  stable profiles :
+    {
+      var root : Node__46230540<UserId__313180070, UserProfile__491224006>;
+      var size : Nat__490723111
+    };
+  stable rateLimiterState :
+    {
+      buckets : Map__605269027<Text, DailyBucket__949751508>;
+      var lastResetDate : Text
+    };
+  stable referralCodes :
+    {
+      var root : Node__46230540<Text, ReferralCode__68101573>;
+      var size : Nat__490723111
+    };
+  stable referralConfigStore : {var value : ReferralConfig__572289324};
+  stable referralCreditBalances :
+    {var root : Node__46230540<Text, Float>; var size : Nat__490723111};
+  stable referralUses :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ReferralUse__883031573]];
+      var elementIndex : Nat__490723111
+    };
+  stable routeOptIns :
+    {
+      var root : Node__46230540<Text, RouteOptIn__1022079996>;
+      var size : Nat__490723111
+    };
+  stable sales :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Sale__221607697>>;
+      var size : Nat__490723111
+    };
+  stable schedulerConfigStore : {var value : SchedulerConfig__699112068};
+  stable shifts :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Shift__261115225>>;
+      var size : Nat__490723111
+    };
+  stable shortsDayRateCounts :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable shortsDayRateKey : {var value : Text};
+  stable shortsDriverIndex :
+    {
+      var root : Node__46230540<Text, List__415060402<Text>>;
+      var size : Nat__490723111
+    };
+  stable shortsJobs :
+    {
+      var root : Node__46230540<Text, ShortsJob__384201411>;
+      var size : Nat__490723111
+    };
+  stable snapScanMerchantApiKeyStore : {var value : Text};
+  stable snapScanMerchantIdStore : {var value : Text};
+  stable snapScanWebhookSecretStore : {var value : Text};
+  stable stakingRecords :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, StakingRecord__991008118>>;
+      var size : Nat__490723111
+    };
+  stable var stripeConfiguration : ?StripeConfiguration__96897619;
+  stable tavilyApiKeyStore : {var value : Text};
+  stable tavilyCallCountStore : {var value : Nat};
+  stable tavilyMonthStore : {var value : Nat};
+  stable tomTomApiKeyRaw : Text;
+  stable tomTomApiKeyStore : {var value : Text};
+  stable trips :
+    {
+      var root :
+        Node__46230540<UserId__313180070,
+                        Map__605269027<Text, Trip__14129367>>;
+      var size : Nat__490723111
+    };
+  stable uploadPostConfigStore : {var value : ?UploadPostConfig__1073487293};
+  stable usdcZarRateCache : {var value : ?(Float, Int)};
+  stable videoAnalytics :
+    {
+      var root : Node__46230540<Text, [VideoAnalytics__638635831]>;
+      var size : Nat__490723111
+    };
+  stable videoBrandingConfigs :
+    {
+      var root : Node__46230540<Text, BrandingConfig__665846122>;
+      var size : Nat__490723111
+    };
+  stable videoClips :
+    {
+      var root : Node__46230540<Text, VideoClip__597155695>;
+      var size : Nat__490723111
+    };
+  stable videoPostingSchedules :
+    {
+      var root : Node__46230540<Text, PostingSchedule__148334467>;
+      var size : Nat__490723111
+    };
+  stable videoPosts :
+    {
+      var root : Node__46230540<Text, VideoPost__409361528>;
+      var size : Nat__490723111
+    };
+  stable videoUploads :
+    {
+      var root : Node__46230540<Text, VideoUpload__460629345>;
+      var size : Nat__490723111
+    };
+  stable videoWhisperConfigStore : {var value : ?WhisperConfig__316944054};
+  stable voiceUsage :
+    {
+      var root : Node__46230540<UserId__313180070, VoiceUsage__627666231>;
+      var size : Nat__490723111
+    };
+  stable websiteBuilderDailyCount :
+    {var root : Node__46230540<Text, (Nat, Int)>; var size : Nat__490723111};
+  stable websiteJobs :
+    {
+      var root : Node__46230540<Text, WebsiteJob__756952975>;
+      var size : Nat__490723111
+    };
+  stable weeklyBriefingState : {var value : WeeklyBriefingState__378310343};
+  stable whatsappConfigStore : {var value : ?WhatsAppConfig__954487848};
+  stable whatsappMessages :
+    {
+      var root : Node__46230540<Text, WhatsAppConversationEntry__115856186>;
+      var size : Nat__490723111
+    };
+  stable whatsappPhoneIndex :
+    {var root : Node__46230540<Text, Principal>; var size : Nat__490723111};
+  stable whatsappRateLimits :
+    {
+      var root : Node__46230540<Text, WhatsAppRateLimit__881136461>;
+      var size : Nat__490723111
+    };
+  stable whatsappWhisperConfigStore : {var value : ?WhisperConfig__633541279};
+  stable xPostIdCounterStore : {var value : Nat};
+  stable xPostingConfigStore : {var value : XPostingConfig__740082889};
+  stable xPostsStore :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?XPost__164775881]];
+      var elementIndex : Nat__490723111
+    };
+  stable zeroXWorkActiveTaskIdStore : {var value : ?Text};
+  stable zeroXWorkApiKeyStore : {var value : Text};
+  stable zeroXWorkCachedTasksStore : {var value : [TaskItem__961896334]};
+  stable zeroXWorkRegisteredStore : {var value : Bool};
+  stable zeroXWorkTasksCompletedStore : {var value : Nat};
+  stable zeroXWorkTotalUSDCEarnedStore : {var value : Float};
+  stable zeroXWorkWalletAddressStore : {var value : Text}
+}) ;

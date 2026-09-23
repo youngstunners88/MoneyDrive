@@ -1,0 +1,24 @@
+{
+  "overview": "MoneyDrive is an earnings optimization and income expansion system for South African ride-hailing drivers. It combines AI-powered income tools, in-car sales, advertising deal pipelines, and community features to help drivers maximize their earnings and build wealth.",
+  "features": [
+    "Community Forum (eTavern) with anonymous/profiled posting, voice notes, threaded replies, and likes",
+    "AI agent Nduna with persistent memory and autonomous marketing",
+    "3-tier subscription model with 90-day pilot (Tier 1/2 free)",
+    "In-car sales with SnapScan QR payments",
+    "ElevenLabs voice conversations with Nduna",
+    "Advertising deal pipeline and pitch deck generator",
+    "Driver Wealth Academy with MiniPay savings",
+    "Opportunity Hunter with Browserbase cloud browsing",
+    "Document Vault with vetKD encryption",
+    "Fleet owner dashboard"
+  ],
+  "category": "productivity",
+  "tags": [
+    "south-africa",
+    "gig-economy",
+    "ai-agent",
+    "ride-hailing",
+    "community-forum"
+  ],
+  "last_updated": "2026-04-26T00:35:07.706Z"
+}

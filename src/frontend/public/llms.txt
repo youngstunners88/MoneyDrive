@@ -1,0 +1,69 @@
+# MoneyDrive
+
+> MoneyDrive is an Earnings Optimization and Income Expansion System for South African Uber, Bolt, and InDrive drivers — powered by Nduna, a persistent AI agent with voice, encrypted memory, and autonomous weekly research that finds new income streams drivers haven't thought to look for.
+
+## Driver Tools
+
+- [Dashboard](https://moneydriver-2oj.caffeine.xyz/dashboard): Real-time overview of earnings, expenses, fuel costs, and net profit
+- [Earnings Tracker](https://moneydriver-2oj.caffeine.xyz/earnings): Log trips and track income with weekly and monthly totals
+- [Expense Tracker](https://moneydriver-2oj.caffeine.xyz/expenses): Record vehicle expenses by category and see true net profit per shift
+- [Fuel Calculator](https://moneydriver-2oj.caffeine.xyz/fuel): Calculate fuel cost per trip and per kilometre based on current prices
+- [Event Calendar](https://moneydriver-2oj.caffeine.xyz/events): Weekly SA event intelligence sourced from Tavily — real events only, no fabricated data
+- [In-Car Sales](https://moneydriver-2oj.caffeine.xyz/sales): Manage sales of in-car products to passengers (WiFi, water, charging, mints, wet wipes, power bank, first aid, towels) — Bolt drivers notified these apply after trips only
+- [QR Menu](https://moneydriver-2oj.caffeine.xyz/qr-menu): Generate a SnapScan QR payment menu for passengers; each driver links their own SnapCode
+- [Schedule Manager](https://moneydriver-2oj.caffeine.xyz/schedule): Plan and optimize driving shifts for peak earnings
+- [Document Vault](https://moneydriver-2oj.caffeine.xyz/documents): Upload and store vehicle registration, operating licence, permits, and invoices — vetKD encrypted, readable only by the owning driver (Tier 2+)
+- [Fleet Dashboard](https://moneydriver-2oj.caffeine.xyz/fleet): Track income and expenses across multiple vehicles for fleet or data owners (Tier 2+)
+
+## AI Agent (Nduna)
+
+- [Nduna Chat](https://moneydriver-2oj.caffeine.xyz/ai-assistant): Chat with Nduna — MoneyDrive's persistent, male SA-localized earnings coach (Tier 3)
+- [MCP Server Card](https://moneydriver-2oj.caffeine.xyz/.well-known/mcp/server-card.json): Agent capability declaration for automated discovery
+- Nduna's personality: direct, practical, uses SA slang, optimized for Uber, Bolt, and InDrive contexts
+- Nduna's memory: per-driver encrypted learning loop (vetKD) that persists across sessions and improves recommendations over time
+- Nduna's voice: ElevenLabs TTS (voice ID: mJZEpDe9qAKz9yOOwCD8), text fallback if audio unavailable (Tier 2+)
+- Rate limits: Tier 1 — 20 Nduna queries/day; Tier 2 — 50/day; Tier 3 — 200/day (resets midnight UTC)
+- Today's date is always injected into every Nduna request at the HTTP level — he cannot hallucinate the date
+
+## Business Features
+
+- [Advertising Pipeline](https://moneydriver-2oj.caffeine.xyz/advertising): Track advertising deal stages, company pitches, follow-up reminders, and deal closure analytics
+- [Lead Research](https://moneydriver-2oj.caffeine.xyz/advertising): Automated weekly top 10 advertising leads per driver sourced from Google Business, Yellow Pages SA, CIPC, Google Places API, with OSINT enrichment (WHOIS, Hunter.io, hiring signals)
+- [Pitch Deck Generator](https://moneydriver-2oj.caffeine.xyz/advertising): Generate advertising pitch decks with geolocation and traffic intelligence — PDF and interactive formats
+- [Earnings Intelligence](https://moneydriver-2oj.caffeine.xyz/intelligence): Deep analytics, income optimization insights, and driver cohort analysis — Power Earner / Growth Driver / New Driver segmentation (Tier 3)
+- [Opportunity Hunter](https://moneydriver-2oj.caffeine.xyz/opportunities): Weekly autonomous browser research to surface new platforms, promotions, and income streams outside predefined categories (Tier 3)
+- [AI Video Studio](https://moneydriver-2oj.caffeine.xyz/hyperframes): Generate TikTok/Instagram 1080×1920 slideshows and MP4 videos from topic prompts via Hyperframes — up to 5 renders/day (Tier 3)
+- [Website Builder](https://moneydriver-2oj.caffeine.xyz/website-builder): Nduna generates a full personal driver website with profile, services, SnapScan booking, and WhatsApp contact (Tier 3)
+- [Referral Engine](https://moneydriver-2oj.caffeine.xyz/profile): R50 credit per successful driver signup via referral link — credited automatically to next subscription
+- [Driver Wealth Academy](https://moneydriver-2oj.caffeine.xyz/academy): Financial education resources including Rich Dad Poor Dad, Alex Hormozi, Myron Golden, Vusi Thembekwayo, and ICP staking guides
+- [Competitive Intelligence](https://moneydriver-2oj.caffeine.xyz/intelligence): Anonymous driver leaderboard, deal closure stats, and surge accuracy tracking
+
+## Getting Started
+
+- [Sign Up](https://moneydriver-2oj.caffeine.xyz): Create a driver account using Internet Identity — blockchain login, no password required
+- Tier 1 — Hustler: R350/month with a 14-day free trial; payment via SnapScan QR
+- Tier 2 — Grinder: R530/month; unlocks in-car sales, document vault, fleet tracking, Nduna voice
+- Tier 3 — Boss: R800/month; unlocks Nduna AI chat, lead research, video studio, Opportunity Hunter, website builder
+- SnapScan setup: drivers enter their SnapCode (not merchant ID) in QR Menu settings — SnapCode format is a short alphanumeric string (e.g. rQ1psbyq), separate from the printed merchant number
+- SnapScan merchant account: register at [merchant.getsnapscan.com](https://merchant.getsnapscan.com)
+
+## Agent Discovery
+
+- [llms-full.txt](https://moneydriver-2oj.caffeine.xyz/llms-full.txt): Complete API reference, code examples, auth patterns, rate limit tables, tier gating, and WebMCP tool schemas
+- [API Catalog](https://moneydriver-2oj.caffeine.xyz/.well-known/api-catalog): RFC 9727 linkset+json with service-desc, service-doc, and status links
+- [MCP Server Card](https://moneydriver-2oj.caffeine.xyz/.well-known/mcp/server-card.json): SEP-1649 agent capability declaration
+- [OpenID Configuration](https://moneydriver-2oj.caffeine.xyz/.well-known/openid-configuration): OAuth/OIDC discovery metadata for programmatic agent authentication
+- [OAuth Protected Resource](https://moneydriver-2oj.caffeine.xyz/.well-known/oauth-protected-resource): RFC 9728 resource metadata with authorization server and scopes
+- [Agent Skills Index](https://moneydriver-2oj.caffeine.xyz/.well-known/agent-skills/index.json): Agent skills discovery index with SHA-256 digests
+- [robots.txt](https://moneydriver-2oj.caffeine.xyz/robots.txt): Crawl rules with explicit AI crawler directives (GPTBot, Claude-Web, Google-Extended) and Content-Signal declarations
+- [sitemap.xml](https://moneydriver-2oj.caffeine.xyz/sitemap.xml): Canonical URL map for all public routes
+
+## Optional
+
+- MoneyDrive does NOT provide: guaranteed earnings, financial advice, legal advice, tax advice, or investment recommendations — all income figures are driver-reported estimates
+- MoneyDrive does NOT support: Stripe payments (SnapScan only), in-canister video rendering (Hyperframes runs on a separate VPS sidecar), or automated posting without driver confirmation
+- Opportunity Hunter and AI Video Studio require a VPS sidecar URL to be configured by the admin — these features are inactive until the sidecar is connected
+- Source code: [github.com/youngstunners88/moneydrive](https://github.com/youngstunners88/moneydrive)
+- Built on the Internet Computer Protocol (ICP) — backend is a Motoko canister, not a traditional server; data persists via ICP orthogonal persistence with vetKD encryption for sensitive fields
+
+# Last reviewed: 2026-Q2. Next review: 2026-Q3

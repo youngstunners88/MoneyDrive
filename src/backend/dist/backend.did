@@ -1,0 +1,1918 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type ZeroXWorkTask = 
+ record {
+   capability: text;
+   description: text;
+   reward: float64;
+   taskId: text;
+   title: text;
+ };
+type ZeroXWorkStatus = 
+ record {
+   activeTaskId: opt text;
+   registered: bool;
+   tasksCompleted: nat;
+   walletAddress: text;
+ };
+type ZeroXWorkEarnings = 
+ record {
+   tasksCompleted: nat;
+   totalUSDCEarned: float64;
+ };
+type XPostingConfig = 
+ record {
+   earningsThresholdUsd: nat;
+   isUnlocked: bool;
+   lastPostAt: opt int;
+   monthlyEarningsCents: nat;
+   totalPostsPublished: nat;
+   xAccessToken: text;
+   xAccessTokenSecret: text;
+   xApiKey: text;
+   xApiSecret: text;
+ };
+type XPostType = 
+ variant {
+   DriverWin;
+   IncomeTip;
+   SAIntelligence;
+   TaskOutcome;
+ };
+type XPostStatus = 
+ variant {
+   failed;
+   pending;
+   posted;
+   scheduled;
+ };
+type XPost = 
+ record {
+   content: text;
+   id: nat;
+   impressionsCount: nat;
+   likesCount: nat;
+   postType: XPostType;
+   postedAt: opt int;
+   repliesCount: nat;
+   retweetsCount: nat;
+   status: XPostStatus;
+   xPostId: opt text;
+ };
+type WhisperConfig__1 = record {apiKey: text;};
+type WhisperConfig = 
+ record {
+   apiKey: text;
+   model: text;
+ };
+type WhatsAppConversationEntry = 
+ record {
+   body: text;
+   channel: ConversationChannel;
+   deliveryStatus: MessageDeliveryStatus;
+   direction: MessageDirection;
+   driverId: text;
+   errorMsg: opt text;
+   mediaStorageRef: opt text;
+   messageId: text;
+   timestamp: int;
+ };
+type WhatsAppConfig = 
+ record {
+   apiKey: text;
+   phoneNumber: text;
+   webhookSecret: text;
+ };
+type WeeklyReport = 
+ record {
+   activeCampaigns: vec text;
+   revenueAttributed: float64;
+   topAngle: opt text;
+   totalConversions: nat;
+   totalSends: nat;
+   totalTrialStarts: nat;
+   weekOf: text;
+   worstAngle: opt text;
+ };
+type WeeklyBriefingState = 
+ record {
+   briefingDayOfWeek: nat;
+   briefingHour: nat;
+   enabled: bool;
+   lastSentAt: opt int;
+ };
+type WebsiteJobStatus = 
+ variant {
+   failed;
+   generating;
+   pending;
+   ready;
+ };
+type WebsiteJob = 
+ record {
+   createdAt: int;
+   driverId: text;
+   errorMsg: opt text;
+   htmlContent: opt text;
+   id: text;
+   iteration: nat;
+   shareUrl: opt text;
+   status: WebsiteJobStatus;
+   topic: text;
+   updatedAt: int;
+ };
+type VoiceUsage = 
+ record {
+   count: nat;
+   date: int;
+ };
+type VideoUpload = 
+ record {
+   contentType: text;
+   driverId: text;
+   errorMsg: opt text;
+   fileName: text;
+   fileSizeBytes: nat;
+   id: text;
+   processingStatus: UploadStatus;
+   storageRef: text;
+   uploadedAt: int;
+ };
+type VideoPost = 
+ record {
+   clipId: text;
+   driverId: text;
+   errorMsg: opt text;
+   id: text;
+   platform: SocialPlatform;
+   platformPostId: opt text;
+   postedAt: opt int;
+   scheduledAt: opt int;
+   status: PostStatus;
+ };
+type VideoJobStatus = 
+ record {
+   clipsFailed: nat;
+   clipsGenerated: nat;
+   clipsReady: nat;
+   lastUpdatedAt: int;
+   postsPosted: nat;
+   postsScheduled: nat;
+   uploadId: text;
+ };
+type VideoClip = 
+ record {
+   brandedStorageRef: opt text;
+   captionsVttRef: opt text;
+   driverId: text;
+   durationSec: float64;
+   endSec: float64;
+   errorMsg: opt text;
+   id: text;
+   processingStatus: ClipStatus;
+   startSec: float64;
+   storageRef: text;
+   title: opt text;
+   uploadId: text;
+ };
+type VideoAnalytics = 
+ record {
+   comments: nat;
+   engagementRate: float64;
+   fetchedAt: int;
+   likes: nat;
+   platform: SocialPlatform;
+   postId: text;
+   shares: nat;
+   views: nat;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = 
+ record {
+   currencyCode: text;
+   displayName: text;
+   fuelConsumptionRate: float64;
+   subscriptionTier: nat;
+   vehicleName: text;
+   voiceEnabled: bool;
+ };
+type UserId = principal;
+type UploadStatus = 
+ variant {
+   failed;
+   pending;
+   processing;
+   ready;
+ };
+type UploadPostConfig = 
+ record {
+   accountId: text;
+   apiKey: text;
+ };
+type Trip = 
+ record {
+   amount: float64;
+   date: int;
+   durationMinutes: nat;
+   notes: text;
+   platform: text;
+   tripId: text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type Timestamp = int;
+type Summary = 
+ record {
+   avgDirectMs: nat;
+   avgGatewayMs: nat;
+   cacheHits: nat;
+   directRequests: nat;
+   errorCount: nat;
+   gatewayRequests: nat;
+   totalRequests: nat;
+ };
+type StripeSessionStatus = 
+ variant {
+   completed: record {
+                response: text;
+                userPrincipal: opt text;
+              };
+   failed: record {error: text;};
+ };
+type StripeConfiguration = 
+ record {
+   allowedCountries: vec text;
+   secretKey: text;
+ };
+type StakingRecord = 
+ record {
+   dissolveDelayDays: nat;
+   icpAmount: float64;
+   notes: text;
+   stakeId: text;
+   startDate: int;
+ };
+type SocialPlatform = 
+ variant {
+   instagram;
+   linkedin;
+   tiktok;
+   youtube;
+ };
+type SmartRecommendation = 
+ record {
+   companyName: text;
+   dataPoint: text;
+   pitch: text;
+   score: CompanyScore;
+   urgency: text;
+ };
+type Slide = 
+ record {
+   bullets: vec text;
+   dataPoint: opt text;
+   slideType: text;
+   speakerNotes: text;
+   title: text;
+ };
+type ShortsStatus = 
+ variant {
+   failed;
+   pending;
+   ready;
+   rendering;
+   selecting;
+   transcribing;
+ };
+type ShortsRequest = 
+ record {
+   sourceType: variant {
+                 upload;
+                 youtube;
+               };
+   sourceUrl: text;
+ };
+type ShortsJob = 
+ record {
+   clipStatus: ShortsStatus;
+   createdAt: int;
+   driverId: principal;
+   errorMsg: opt text;
+   id: text;
+   outputMp4Url: opt text;
+   selectedSegmentEnd: opt nat;
+   selectedSegmentStart: opt nat;
+   sourceType: variant {
+                 upload;
+                 youtube;
+               };
+   sourceUrl: text;
+ };
+type ShortsConfig = 
+ record {
+   vpsKey: opt text;
+   vpsUrl: opt text;
+ };
+type ShoppingItem = 
+ record {
+   currency: text;
+   priceInCents: nat;
+   productDescription: text;
+   productName: text;
+   quantity: nat;
+ };
+type Shift = 
+ record {
+   date: int;
+   endTime: text;
+   notes: text;
+   shiftId: text;
+   startTime: text;
+   status: text;
+   targetEarnings: float64;
+ };
+type ScraperAuditLog = 
+ record {
+   companiesFound: nat;
+   driverId: text;
+   errorMessage: opt text;
+   id: text;
+   source: text;
+   success: bool;
+   timestamp: int;
+   url: text;
+ };
+type ScrapedLead = 
+ record {
+   address: text;
+   browserbaseEnriched: opt BrowserbaseCompanyResult;
+   companyName: text;
+   compositeScore: nat;
+   driverId: text;
+   email: text;
+   exaEnriched: opt ExaCompanyResult;
+   id: text;
+   industry: text;
+   phone: text;
+   scoringFactors: text;
+   scrapedAt: int;
+   source: text;
+   status: LeadStatus;
+   tavilyHiringSignal: bool;
+   tavilySnippet: text;
+   website: text;
+   weekNumber: nat;
+   year: nat;
+ };
+type SchedulerConfig = 
+ record {
+   dayOfWeek: nat;
+   enabled: bool;
+   hour: nat;
+ };
+type Sale = 
+ record {
+   date: int;
+   productName: text;
+   quantity: nat;
+   saleId: text;
+   totalAmount: float64;
+ };
+type SAZone = 
+ variant {
+   CapeTownCBD;
+   DurbanBeachfront;
+   Generic;
+   JohannesburgCBD;
+   Midrand;
+   PretoriaCBD;
+   Sandton;
+   Soweto;
+   Umhlanga;
+ };
+type RouteOptIn = 
+ record {
+   driverId: text;
+   optedInAt: int;
+   primaryRoute: SAZone;
+   secondaryRoute: opt SAZone;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: WebsiteJob;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: record {
+         claimUrl: text;
+         url: text;
+       };
+ };
+type ReferralUse = 
+ record {
+   bonusAmount: float64;
+   bonusPaid: bool;
+   code: text;
+   referredUserId: text;
+   usedAt: int;
+ };
+type ReferralConfig = 
+ record {
+   bonusDescription: text;
+   bonusPerReferral: float64;
+   bonusSource: text;
+   enabled: bool;
+   minTripsToQualify: nat;
+ };
+type ReferralCode = 
+ record {
+   code: text;
+   createdAt: int;
+   ownerId: text;
+   ownerName: text;
+   timesUsed: nat;
+   totalEarned: float64;
+ };
+type RecommendationType = 
+ variant {
+   advertising;
+   product;
+   surge;
+ };
+type RecommendationOutcomeV2 = 
+ record {
+   action: DriverAction;
+   driverId: text;
+   notes: opt text;
+   recommendationId: text;
+   recordedAt: nat64;
+   revenue: opt nat;
+ };
+type RecommendationOutcome = 
+ record {
+   driverAction: opt text;
+   outcome: opt text;
+   recommendationId: nat;
+   revenue: opt nat;
+   timestamp: nat64;
+ };
+type Product = 
+ record {
+   currentStock: nat;
+   name: text;
+   productId: text;
+   sellingPrice: float64;
+ };
+type ProactiveTrigger = 
+ record {
+   message: text;
+   page: text;
+   triggerType: text;
+ };
+type PresentationInput = 
+ record {
+   avgPassengers: nat;
+   city: text;
+   driverName: text;
+   estimatedMonthlyExposure: nat;
+   proposedDealValue: nat;
+   routes: text;
+   targetCompanyName: text;
+   targetIndustry: text;
+   tripsPerMonth: nat;
+   vehicleModel: text;
+ };
+type PresentationData = 
+ record {
+   generatedAt: int;
+   id: text;
+   shareToken: text;
+   slides: vec Slide;
+ };
+type PostingSchedule = 
+ record {
+   driverId: text;
+   enabled: bool;
+   platformsEnabled: vec SocialPlatform;
+   postsPerWeek: nat;
+   preferredDays: vec nat;
+   preferredHourUtc: nat;
+ };
+type PostStatus = 
+ variant {
+   failed;
+   posted;
+   scheduled;
+ };
+type PitchStatus = 
+ variant {
+   abandoned;
+   closed;
+   interested;
+   negotiating;
+   rejected;
+   sent;
+   viewed;
+ };
+type PassengerOrder = 
+ record {
+   driverName: text;
+   items: vec OrderItem;
+   orderId: text;
+   passengerNote: text;
+   paymentMethod: text;
+   timestamp: int;
+   totalAmount: float64;
+ };
+type OutcomeStats = 
+ record {
+   avgRevenuePerTried: nat;
+   partialCount: nat;
+   skippedCount: nat;
+   surgeAccuracy: float64;
+   totalRecommendations: nat;
+   totalRevenueTracked: nat;
+   triedCount: nat;
+ };
+type OrderItem = 
+ record {
+   productName: text;
+   quantity: nat;
+   unitPrice: float64;
+ };
+type OrbisListingStatus = 
+ record {
+   listed: bool;
+   listingId: opt text;
+   totalCalls: nat;
+   usdcEarned: float64;
+ };
+type OrbisListingConfig = 
+ record {
+   autoPublish: bool;
+   listingName: text;
+   pricePerCall: float64;
+   providerApiKey: text;
+ };
+type OpportunityFinding = 
+ record {
+   category: OpportunityCategory;
+   description: text;
+   discoveredAt: int;
+   dismissed: bool;
+   driverId: text;
+   expiresAt: int;
+   id: text;
+   relevanceScore: nat;
+   source: text;
+   title: text;
+ };
+type OpportunityCategory = 
+ variant {
+   businessLead;
+   incomeCategory;
+   intercityRoute;
+   newPlatform;
+   platformPromotion;
+   regulatoryChange;
+ };
+type NdunaSystemPromptState = 
+ record {
+   basePrompt: text;
+   evolutionCount: nat;
+   evolutionDelta: text;
+   lastEvolved: opt int;
+ };
+type NdunaRecommendationV2 = 
+ record {
+   confidence: ConfidenceLevel;
+   content: text;
+   driverId: text;
+   id: text;
+   recommendationType: RecommendationType;
+   timestamp: nat64;
+ };
+type NdunaRecommendation = 
+ record {
+   confidence: text;
+   content: text;
+   driverId: text;
+   recommendationType: text;
+   timestamp: nat64;
+ };
+type NdunaEmail = 
+ record {
+   from: text;
+   inboxId: text;
+   isRead: bool;
+   messageId: text;
+   preview: text;
+   receivedAt: int;
+   subject: text;
+ };
+type MonthlyInsights = 
+ record {
+   advertisingStats:
+    record {
+      companiesInterested: vec text;
+      dealsClosed: vec text;
+      dealsNegotiating: vec text;
+      pitchesSent: nat;
+    };
+   driverId: text;
+   month: nat;
+   productConversions: vec text;
+   suggestedSystemPromptUpdate: text;
+   surgeAccuracy: float64;
+   topSurgeRecommendations: vec text;
+   year: nat;
+ };
+type MetricEntry = 
+ record {
+   durationMs: nat;
+   error: opt text;
+   isGateway: bool;
+   model: text;
+   timestamp: int;
+   wasCached: bool;
+ };
+type MessageDirection = 
+ variant {
+   inbound;
+   outbound;
+ };
+type MessageDeliveryStatus = 
+ variant {
+   delivered;
+   failed;
+   read;
+   sent;
+ };
+type MessageAngle = 
+ variant {
+   earnings_proof;
+   feature_benefit;
+   limited_time_offer;
+   referral_incentive;
+ };
+type MarkdownStatus = 
+ variant {
+   converting;
+   failed;
+   pending;
+   ready;
+   unsupported;
+ };
+type LeadStatus = 
+ variant {
+   dealClosed;
+   interested;
+   pending;
+   pitched;
+   rejected;
+ };
+type LeadBatch = 
+ record {
+   driverId: text;
+   generatedAt: int;
+   leads: vec ScrapedLead;
+   totalRanked: nat;
+   totalScraped: nat;
+   weekNumber: nat;
+   year: nat;
+ };
+type LatencyPercentiles = 
+ record {
+   p50: nat;
+   p95: nat;
+   p99: nat;
+ };
+type IntelligenceResult = 
+ record {
+   category: text;
+   city: text;
+   data: vec IntelligenceDataPoint;
+   generatedAt: int;
+ };
+type IntelligenceQuery = 
+ record {
+   category: IntelligenceCategory;
+   city: opt text;
+   limit: nat;
+ };
+type IntelligenceDataPoint = 
+ record {
+   name: text;
+   sampleSize: nat;
+   unit: text;
+   value: float64;
+ };
+type IntelligenceCategory = 
+ variant {
+   adConversionRates;
+   earningsBenchmarks;
+   leadQuality;
+   surgeWindows;
+   topZones;
+ };
+type HyperframesRenderStatus = 
+ variant {
+   failed;
+   pending;
+   ready;
+   rendering;
+ };
+type HyperframesJob = 
+ record {
+   compositionHtml: text;
+   createdAt: int;
+   driverId: text;
+   errorMsg: opt text;
+   id: text;
+   mp4Url: opt text;
+   renderStatus: HyperframesRenderStatus;
+   topic: text;
+ };
+type FuelLog = 
+ record {
+   cost: float64;
+   date: int;
+   distance: float64;
+   fuelUsed: float64;
+ };
+type ForumPostId = text;
+type ForumPost = 
+ record {
+   authorId: UserId;
+   channel: ForumChannel;
+   deleted: bool;
+   flagCount: nat;
+   id: ForumPostId;
+   isAnonymous: bool;
+   likeCount: nat;
+   parentId: opt ForumPostId;
+   replyCount: nat;
+   "text": text;
+   timestamp: Timestamp;
+   voiceNoteKey: opt text;
+ };
+type ForumPage = 
+ record {
+   nextOffset: opt nat;
+   posts: vec ForumPost;
+   total: nat;
+ };
+type ForumChannel = 
+ variant {
+   featureRequests;
+   whatILove;
+   whatNeedsWork;
+ };
+type FleetVehicleSummary = 
+ record {
+   expenseCount: nat;
+   make: text;
+   model: text;
+   netProfit: float64;
+   plateNumber: text;
+   totalExpenses: float64;
+   totalIncome: float64;
+   tripCount: nat;
+   vehicleId: text;
+ };
+type FleetVehicle = 
+ record {
+   color: opt text;
+   dateAdded: int;
+   make: text;
+   model: text;
+   notes: opt text;
+   plateNumber: text;
+   vehicleId: text;
+   year: opt nat;
+ };
+type FleetIncomeEntry = 
+ record {
+   amount: float64;
+   date: int;
+   incomeId: text;
+   notes: text;
+   platform: text;
+   vehicleId: text;
+ };
+type FleetExpenseEntry = 
+ record {
+   amount: float64;
+   category: text;
+   date: int;
+   expenseId: text;
+   notes: text;
+   vehicleId: text;
+ };
+type FetchedEvent = 
+ record {
+   category: text;
+   city: text;
+   date: text;
+   driverRelevance: text;
+   fetchedAt: int;
+   id: text;
+   isNew: bool;
+   title: text;
+   venue: text;
+ };
+type ExposureMetrics = 
+ record {
+   confidenceScore: float64;
+   dailyPedestrians: nat;
+   dailyVehicles: nat;
+   factors: vec ExposureFactor;
+   monthlyExposure: nat;
+   routeName: text;
+ };
+type ExposureFactor = 
+ record {
+   name: text;
+   reason: text;
+   weight: float64;
+ };
+type ExpenseEntry = 
+ record {
+   amount: float64;
+   category: text;
+   date: int;
+   expenseId: text;
+   notes: text;
+ };
+type ExaCompanyResult = 
+ record {
+   contactEmail: opt text;
+   description: opt text;
+   employeeCount: opt text;
+   founded: opt text;
+   industry: opt text;
+   name: text;
+   snippet: text;
+   url: text;
+ };
+type EventIntelligence = 
+ record {
+   date: text;
+   driverOpportunityScore: nat;
+   expectedAttendance: text;
+   name: text;
+   sourceUrl: text;
+ };
+type Event = 
+ record {
+   category: text;
+   date: int;
+   description: text;
+   eventId: text;
+   isUserCreated: bool;
+   location: text;
+   title: text;
+ };
+type EmailLog = 
+ record {
+   driverId: text;
+   emailType: text;
+   errorMsg: opt text;
+   id: text;
+   recipient: text;
+   sentAt: int;
+   status: text;
+   subject: text;
+ };
+type EarningsGoal = 
+ record {
+   period: text;
+   targetAmount: float64;
+ };
+type DriverSegment = 
+ record {
+   archetype: text;
+   city: text;
+   estimatedCount: nat;
+   platform: text;
+   tier: nat;
+ };
+type DriverPaymentConfig = 
+ record {
+   bankAccount: text;
+   bankName: text;
+   bankReference: text;
+   baseAddress: text;
+   bnbAddress: text;
+   btcAddress: text;
+   ethAddress: text;
+   snapScanMerchantId: opt text;
+   solAddress: text;
+   usdcAddress: text;
+   usdtAddress: text;
+ };
+type DriverMemoryEntry = 
+ record {
+   category: text;
+   key: text;
+   timestamp: int;
+   value: text;
+ };
+type DriverMemory = 
+ record {
+   agentNotes: text;
+   lastUpdated: int;
+   userProfile: text;
+ };
+type DriverCompetitiveProfile = 
+ record {
+   avgDealValue: nat;
+   city: text;
+   dealsClosedCount: nat;
+   driverId: text;
+   rank: nat;
+   surgeAccuracy: float64;
+   totalInCity: nat;
+ };
+type DriverCohortProfile = 
+ record {
+   cohort: DriverCohort;
+   cohortAdvice: text;
+   earningsThisMonth: float64;
+   rating: float64;
+   tripsThisMonth: nat;
+   upgradeRecommendation: text;
+ };
+type DriverCohort = 
+ variant {
+   GrowthDriver;
+   NewDriver;
+   PowerEarner;
+ };
+type DriverAnalyticsProfile = 
+ record {
+   avgEarningsPerHour: float64;
+   estimatedCarExposure: nat;
+   lastCalculated: int;
+   peakHourRanges: vec text;
+   topEarningDays: vec text;
+   totalEarnings: float64;
+   totalExpenses: float64;
+   totalFuelCost: float64;
+   totalKmsDriven: float64;
+   totalTrips: nat;
+ };
+type DriverAction = 
+ variant {
+   partial;
+   skipped;
+   tried;
+ };
+type DocumentType = 
+ variant {
+   invoice;
+   licence;
+   other;
+   registration;
+ };
+type DocumentRecord = 
+ record {
+   deleted: bool;
+   docType: DocumentType;
+   driverId: text;
+   fileName: text;
+   id: text;
+   markdownContent: opt text;
+   markdownStatus: opt MarkdownStatus;
+   notes: text;
+   storageRef: text;
+   uploadedAt: int;
+ };
+type ConversationChannel = 
+ variant {
+   app;
+   telegram;
+   whatsapp;
+ };
+type ConfidenceLevel = 
+ variant {
+   HIGH;
+   LOW;
+   MEDIUM;
+ };
+type CompetitiveStats = 
+ record {
+   cityLeaderboard: vec CityLeaderEntry;
+   month: text;
+   networkSurgeAccuracy: float64;
+   topCompanies: vec CompanyResponsiveness;
+   totalDriversInNetwork: nat;
+ };
+type CompanyScore = 
+ record {
+   companyName: text;
+   estimatedDealValue: nat;
+   matchScore: float64;
+   priority: nat;
+   reason: text;
+ };
+type CompanyResponsiveness = 
+ record {
+   avgDealValue: nat;
+   companyName: text;
+   responseRate: nat;
+   successfulDeals: nat;
+   totalPitches: nat;
+ };
+type CompanyPitch = 
+ record {
+   companyName: text;
+   contactEmail: opt text;
+   contactPerson: opt text;
+   contactPhone: opt text;
+   createdAt: nat64;
+   driverId: text;
+   expectedValue: opt nat;
+   id: text;
+   lastFollowUp: opt nat64;
+   notes: opt text;
+   pitchDate: nat64;
+   status: PitchStatus;
+   updatedAt: nat64;
+ };
+type ClipStatus = 
+ variant {
+   branding;
+   captioning;
+   failed;
+   pending;
+   ready;
+ };
+type CityLeaderEntry = 
+ record {
+   avgDealValue: nat;
+   city: text;
+   dealsClosed: nat;
+   month: text;
+   topCompany: text;
+ };
+type CampaignStatus = 
+ variant {
+   active;
+   approved;
+   archived;
+   completed;
+   draft;
+   paused;
+   pending_approval;
+   rejected;
+ };
+type CampaignMetrics = 
+ record {
+   campaignId: text;
+   conversionRate: float64;
+   lastUpdated: int;
+   paidConversions: nat;
+   revenueAttributed: float64;
+   sends: nat;
+   trialStarts: nat;
+ };
+type CampaignFailureLog = 
+ record {
+   angle: MessageAngle;
+   campaignId: text;
+   loggedAt: int;
+   reason: text;
+   segment: DriverSegment;
+ };
+type CampaignCreative = 
+ record {
+   copyBody: text;
+   copyHook: text;
+   copySubjectLine: text;
+   imageUrl: text;
+   videoJobId: opt text;
+   videoUrl: opt text;
+ };
+type CampaignConfig = 
+ record {
+   adminEmail: text;
+   enabled: bool;
+   maxActiveCampaignsPerDay: nat;
+   maxMessagesPerSegmentPerWeek: nat;
+   weeklyReportEnabled: bool;
+ };
+type CampaignChannel = 
+ variant {
+   both;
+   email;
+   whatsapp;
+ };
+type Campaign = 
+ record {
+   abVariantId: opt text;
+   abWinner: opt bool;
+   adminNotes: opt text;
+   angle: MessageAngle;
+   approvedAt: opt int;
+   channel: CampaignChannel;
+   createdAt: int;
+   creative: opt CampaignCreative;
+   id: text;
+   isAbTest: bool;
+   publishedAt: opt int;
+   rejectionReason: opt text;
+   segment: DriverSegment;
+   status: CampaignStatus;
+   trackingUtm: text;
+ };
+type BrowserbaseCompanyResult = 
+ record {
+   companyName: text;
+   contactEmail: opt text;
+   description: text;
+   estimatedEmployees: text;
+   hiringSignals: bool;
+   industry: text;
+   keyServices: vec text;
+   scrapedAt: int;
+   source: text;
+   websiteUrl: text;
+ };
+type BrandingConfig = 
+ record {
+   accentColor: text;
+   callToAction: text;
+   driverName: text;
+   musicPreference: text;
+   showMoneyDriveLogo: bool;
+ };
+type AnalyticsSummary = 
+ record {
+   avgNdunaDurationMs: opt int;
+   errorCount: nat;
+   ndunaQueryCount: nat;
+   topActions: vec record {
+                     text;
+                     nat;
+                   };
+   totalEvents: nat;
+ };
+type AnalyticsEvent = 
+ record {
+   action: text;
+   category: text;
+   driverId: text;
+   durationMs: opt int;
+   errorMessage: opt text;
+   id: text;
+   metadata: text;
+   success: bool;
+   tier: opt text;
+   timestamp: int;
+ };
+type AgentMailConfig = 
+ record {
+   apiKey: text;
+   leadFollowupEmailEnabled: bool;
+   ndunaInboxId: opt text;
+   onboardingEmailEnabled: bool;
+   weeklyBriefingEmailEnabled: bool;
+ };
+type AbTestResult = 
+ record {
+   aConversionRate: float64;
+   bConversionRate: float64;
+   campaignAId: text;
+   campaignBId: text;
+   decidedAt: opt int;
+   winnerCampaignId: opt text;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  addCustomEvent: (event: Event) -> ();
+  addDocumentNote: (docId: text, note: text) ->
+   (variant {
+      err: text;
+      ok: bool;
+    });
+  addDriverMemoryEntry: (entry: DriverMemoryEntry) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  addExpense: (expense: ExpenseEntry) -> ();
+  addFleetExpense: (vehicleId: text, category: text, amount: float64, date:
+   int, notes: text) -> (variant {
+                           err: text;
+                           ok: text;
+                         });
+  addFleetIncome: (vehicleId: text, platform: text, amount: float64, date:
+   int, notes: text) -> (variant {
+                           err: text;
+                           ok: text;
+                         });
+  addFleetVehicle: (plateNumber: text, make: text, model: text, year:
+   opt nat, color: opt text, notes: opt text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  addFuelLog: (fuelLog: FuelLog) -> ();
+  addOrUpdateProduct: (product: Product) -> ();
+  addOrUpdateShift: (shift: Shift) -> ();
+  addSale: (sale: Sale) -> ();
+  addTrip: (trip: Trip) -> ();
+  adminListAllDocuments: () -> (vec DocumentRecord) query;
+  applyReferralCode: (code: text) -> (variant {
+                                        err: text;
+                                        ok;
+                                      });
+  applyReferralCreditToPayment: (subscriptionPrice: float64) ->
+   (record {
+      amountDue: float64;
+      creditApplied: float64;
+      remainingBalance: float64;
+    });
+  approveCampaign: (campaignId: text, scheduledFor: opt int) ->
+   (variant {
+      err: text;
+      ok: Campaign;
+    });
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  buildAdvertisingBusinessCase: () -> (text) query;
+  checkAbTestResults: () -> (vec AbTestResult) query;
+  claimZeroXWorkTask: (taskId: text) -> (variant {
+                                           err: text;
+                                           ok: text;
+                                         });
+  /// Admin only: clear (disable) the Cloudflare AI Gateway — reverts to direct calls.
+  clearAIGatewayConfig: () -> ();
+  clearAgentConversation: () -> ();
+  createCheckoutSession: (items: vec ShoppingItem, successUrl: text,
+   cancelUrl: text) -> (text);
+  createForumPost: (channel: ForumChannel, "text": text, isAnonymous: 
+   bool, voiceNoteKey: opt text, parentId: opt ForumPostId) ->
+   (variant {
+      err: text;
+      ok: ForumPost;
+    });
+  createOrUpdateProfile: (profile: UserProfile) -> ();
+  createPitch: (pitch: CompanyPitch) -> (text);
+  createVideoPost: (clipId: text, platform: SocialPlatform, scheduledAt:
+   opt int) -> (variant {
+                  err: text;
+                  ok: text;
+                });
+  createVideoUpload: (storageRef: text, fileName: text, fileSizeBytes: 
+   nat, contentType: text) -> (variant {
+                                 err: text;
+                                 ok: text;
+                               });
+  deleteCustomEvent: (eventId: text) -> ();
+  deleteDocument: (docId: text) -> (variant {
+                                      err: text;
+                                      ok: bool;
+                                    });
+  deleteExpense: (expenseId: text) -> ();
+  deleteFleetExpense: (expenseId: text) -> (variant {
+                                              err: text;
+                                              ok;
+                                            });
+  deleteFleetIncome: (incomeId: text) -> (variant {
+                                            err: text;
+                                            ok;
+                                          });
+  deleteFleetVehicle: (vehicleId: text) -> (variant {
+                                              err: text;
+                                              ok;
+                                            });
+  deleteForumPost: (postId: ForumPostId) -> (variant {
+                                               err: text;
+                                               ok;
+                                             });
+  deletePassengerOrder: (orderId: text) -> ();
+  deletePitch: (id: text) -> (bool);
+  deleteProduct: (productId: text) -> ();
+  deleteSale: (saleId: text) -> ();
+  deleteShift: (shiftId: text) -> ();
+  deleteStakingRecord: (stakeId: text) -> ();
+  deleteTrip: (tripId: text) -> ();
+  detectSurgeOpportunities: () -> (text) query;
+  dismissOpportunity: (findingId: text) -> (variant {
+                                              err: text;
+                                              ok: bool;
+                                            });
+  elevenLabsTextToSpeech: ("text": text) -> (blob);
+  fetchAndStoreAnalytics: () -> ();
+  fetchAndStoreSAEvents: (forceRefresh: bool) ->
+   (variant {
+      err: text;
+      ok: vec FetchedEvent;
+    });
+  flagForumPost: (postId: ForumPostId, reason: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  generateDriverWebsite: (topic: text) -> (Result_1);
+  generateFollowUpReminders: (driverId: text) -> (vec text) query;
+  generateHyperframesSlideshow: (topic: text) ->
+   (variant {
+      err: text;
+      ok: HyperframesJob;
+    });
+  generatePresentation: (input: PresentationInput) ->
+   (variant {
+      err: text;
+      ok: PresentationData;
+    });
+  generateSystemPromptDelta: (insights: MonthlyInsights) -> (text) query;
+  generateWeeklyReport: () -> (WeeklyReport);
+  get0xWorkEarnings: () -> (ZeroXWorkEarnings) query;
+  get0xWorkStatus: () -> (ZeroXWorkStatus) query;
+  /// Returns gateway configuration status. Never returns the API key.
+  getAIGatewayStatus: () -> (record {
+                               configured: bool;
+                               url: opt text;
+                             }) query;
+  getAllReferrals: () -> (vec ReferralUse) query;
+  /// Admin only: returns aggregated analytics summary.
+  getAnalyticsSummary: () -> (AnalyticsSummary) query;
+  /// Admin only: returns true if Brian API key is configured and non-empty.
+  getBrianApiKeyStatus: () -> (bool) query;
+  /// Admin only: returns true if CMC API key is configured and non-empty.
+  getCMCApiKeyStatus: () -> (bool) query;
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getCampaignConfig: () -> (CampaignConfig) query;
+  getCampaignFailureLog: () -> (vec CampaignFailureLog) query;
+  getCampaignMetrics: (campaignId: text) ->
+   (variant {
+      err: text;
+      ok: CampaignMetrics;
+    }) query;
+  getCohortStats: () ->
+   (record {
+      growthDrivers: nat;
+      newDrivers: nat;
+      powerEarners: nat;
+    }) query;
+  getCompetitiveStats: () -> (CompetitiveStats) query;
+  getContextSummary: () -> (text) query;
+  getCustomEvents: () -> (vec Event) query;
+  getDocVaultConfig: () -> (record {notesEnabled: bool;}) query;
+  getDocumentMarkdown: (storageRef: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    }) query;
+  /// Caller sees their own events; admin can pass any driverId.
+  /// Limit is capped at 100 to avoid large responses.
+  getDriverAnalyticsEvents: (driverId: text, limit: nat) ->
+   (vec AnalyticsEvent) query;
+  getDriverAnalyticsProfile: () -> (opt DriverAnalyticsProfile) query;
+  getDriverCohortProfile: () -> (DriverCohortProfile) query;
+  getDriverCreditBalance: (driverId: text) -> (float64) query;
+  getDriverEarningsSnapshot: () -> (text) query;
+  getDriverLeadBatch: (weekNumber: nat, year: nat) -> (opt LeadBatch) query;
+  getDriverLeads: (weekNumber: opt nat, year: opt nat) ->
+   (vec ScrapedLead) query;
+  getDriverMemory: () -> (opt DriverMemory) query;
+  getDriverMemoryEntries: () -> (vec DriverMemoryEntry) query;
+  getDriverOpportunities: (limit: nat) -> (vec OpportunityFinding) query;
+  getDriverOutcomesV2: (driverId: text) ->
+   (vec RecommendationOutcomeV2) query;
+  getDriverPitches: (driverId: text) -> (vec CompanyPitch) query;
+  getDriverProfileSummary: () -> (text) query;
+  getDriverRating: () -> (float64) query;
+  getEarningsGoal: () -> (opt EarningsGoal) query;
+  getEarningsTotal: () -> (float64, nat) query;
+  getElevenLabsSignedUrl: () -> (variant {
+                                   err: text;
+                                   ok: text;
+                                 });
+  getEmailConfig: () -> (AgentMailConfig) query;
+  getEmailLogs: () -> (vec EmailLog) query;
+  /// Admin only: returns the last `limit` error events (success=false).
+  getErrorLog: (limit: nat) -> (vec AnalyticsEvent) query;
+  getEventRelevanceScore: (eventTitle: text, eventDate: int) -> (text) query;
+  getEventsWithTavilyIntelligence: (city: text) ->
+   (variant {
+      err: text;
+      ok: vec EventIntelligence;
+    });
+  /// Admin only: returns a masked preview of the Exa API key.
+  /// Shows first 6 characters followed by "***", or "***" if short/empty.
+  getExaApiKey: () -> (text) query;
+  getExpenses: () -> (vec ExpenseEntry) query;
+  getExposureMetrics: (zone: SAZone) -> (ExposureMetrics) query;
+  getExposureMetricsWithTrips: (zone: SAZone, tripsPerMonth: nat) ->
+   (ExposureMetrics) query;
+  getFetchedEvents: () -> (vec FetchedEvent) query;
+  getFleetExpenses: (vehicleId: opt text) -> (vec FleetExpenseEntry) query;
+  getFleetIncome: (vehicleId: opt text) -> (vec FleetIncomeEntry) query;
+  getFleetSummary: () -> (vec FleetVehicleSummary) query;
+  getFleetVehicles: () -> (vec FleetVehicle) query;
+  getForumAdminStats: () ->
+   (record {
+      flaggedPosts: vec ForumPost;
+      postsPerChannel: vec record {
+                             text;
+                             nat;
+                           };
+      topContributors: vec record {
+                             text;
+                             nat;
+                           };
+      totalPosts: nat;
+    }) query;
+  getForumPost: (id: ForumPostId) -> (opt ForumPost) query;
+  getForumPosts: (channel: ForumChannel, offset: nat, limit: nat) ->
+   (ForumPage) query;
+  getForumReplies: (parentId: ForumPostId, offset: nat, limit: nat) ->
+   (ForumPage) query;
+  getFuelLogs: () -> (vec FuelLog) query;
+  getFuelProfile: () ->
+   (record {
+      fuelConsumptionRate: float64;
+      vehicleName: text;
+    }) query;
+  /// Admin only: returns current cache hit rate as a percentage (0.0–1.0).
+  getGatewayCacheHitRate: () -> (float64) query;
+  /// Admin only: returns latency percentiles (p50/p95/p99) from the rolling sample buffer.
+  getGatewayLatencyPercentiles: () -> (LatencyPercentiles) query;
+  /// Admin only: returns aggregated gateway metrics summary.
+  getGatewayMetricsSummary: () -> (Summary) query;
+  /// Admin only: returns the last `limit` gateway metric entries.
+  getGatewayRecentEntries: (limit: nat) -> (vec MetricEntry) query;
+  /// Admin only: returns the top 5 busiest hours by request count.
+  getGatewayTopHours: () -> (vec record {
+                                   text;
+                                   nat;
+                                 }) query;
+  getHyperframesConfig: () -> (record {configured: bool;}) query;
+  getHyperframesJob: (id: text) -> (opt HyperframesJob) query;
+  getHyperframesJobs: () -> (vec HyperframesJob) query;
+  getICPPrice: () -> (text);
+  getLeadAuditLog: () -> (vec ScraperAuditLog) query;
+  getLowStockProducts: () -> (vec Product) query;
+  getMonthOutcomes: (driverId: text, year: nat, month: nat) ->
+   (vec RecommendationOutcomeV2) query;
+  getMyCompetitiveProfile: () -> (opt DriverCompetitiveProfile) query;
+  getMyPaymentConfig: () -> (opt DriverPaymentConfig) query;
+  getMyReferralCode: () -> (ReferralCode);
+  getMyReferralCredit: () -> (float64) query;
+  getMyRouteOptIn: () -> (opt RouteOptIn) query;
+  getMySnapScanMerchantId: () -> (opt text) query;
+  getNdunaInboxId: () -> (opt text) query;
+  getNdunaInboxMessages: () -> (vec NdunaEmail);
+  getNdunaPromptState: () -> (NdunaSystemPromptState) query;
+  getOpenClawModel: () -> (text) query;
+  getOpportunityHunterStatus: () ->
+   (record {
+      configured: bool;
+      lastError: text;
+      lastRun: int;
+    }) query;
+  /// Admin only: returns true if the Orbis API key is configured and non-empty.
+  getOrbisApiKeyStatus: () -> (bool) query;
+  getOrbisPublisherStatus: () -> (OrbisListingStatus);
+  getOutcomeStats: (driverId: text, year: nat, month: nat) ->
+   (OutcomeStats) query;
+  getOutcomeV2: (recommendationId: text) ->
+   (opt RecommendationOutcomeV2) query;
+  getPassengerOrders: () -> (vec PassengerOrder) query;
+  /// Returns the current pilot mode status. Public query — readable by the frontend.
+  getPilotMode: () -> (bool) query;
+  getPitch: (id: text) -> (opt CompanyPitch) query;
+  getPitchesByStatus: (driverId: text, status: PitchStatus) ->
+   (vec CompanyPitch) query;
+  getPostingSchedule: () -> (opt PostingSchedule) query;
+  getPresentation: (shareToken: text) -> (opt PresentationData) query;
+  getProactiveTriggers: () -> (vec ProactiveTrigger) query;
+  getProducts: () -> (vec Product) query;
+  getPublicDriverMenu: (driverName: text) -> (vec Product) query;
+  getPublicDriverPaymentConfig: (driverName: text) ->
+   (opt DriverPaymentConfig) query;
+  /// Admin only: returns the last `limit` events across all drivers (newest first).
+  getRecentAnalyticsEvents: (limit: nat) -> (vec AnalyticsEvent) query;
+  getReferralConfig: () -> (ReferralConfig) query;
+  getReferralStats: () ->
+   (record {
+      pendingBonus: float64;
+      timesUsed: nat;
+      totalEarned: float64;
+    }) query;
+  getRemainingNdunaQueries: () -> (nat) query;
+  getSAIntelligence: (req: IntelligenceQuery) ->
+   (variant {
+      err: text;
+      ok: IntelligenceResult;
+    });
+  getSales: () -> (vec Sale) query;
+  getSchedulerConfig: () -> (SchedulerConfig) query;
+  getShiftHistory: () -> (vec Shift) query;
+  getShifts: () -> (vec Shift) query;
+  getShortsConfig: () -> (ShortsConfig) query;
+  getShortsJob: (jobId: text) -> (opt ShortsJob) query;
+  getSmartRecommendations: () -> (vec SmartRecommendation) query;
+  getSnapScanMerchantId: () -> (text) query;
+  getStakingRecords: () -> (vec StakingRecord) query;
+  getStripeSessionStatus: (sessionId: text) -> (StripeSessionStatus);
+  getTavilyUsageEstimate: () -> (nat) query;
+  getTierPricing: () -> (record {
+                           tier1: nat;
+                           tier2: nat;
+                           tier3: nat;
+                         }) query;
+  getTrips: () -> (vec Trip) query;
+  /// Live USDC/ZAR exchange rate from CoinGecko. 10-minute canister cache.
+  /// Returns raw JSON: {"usd-coin":{"zar":18.52}} or a plain float string on cache hit.
+  getUSDCZARRate: () -> (text);
+  getUnreadWhatsAppCount: () -> (nat) query;
+  getUpcomingShifts: () -> (vec Shift) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  getVideoAnalytics: (postId: text) -> (vec VideoAnalytics);
+  getVideoBrandingConfig: () -> (opt BrandingConfig) query;
+  getVideoClip: (clipId: text) -> (opt VideoClip) query;
+  getVideoClips: (uploadId: text) -> (vec VideoClip) query;
+  getVideoJobStatus: (uploadId: text) -> (opt VideoJobStatus) query;
+  getVideoPosts: (clipId: text) -> (vec VideoPost) query;
+  getVideoUpload: (uploadId: text) -> (opt VideoUpload) query;
+  getVideoUploads: () -> (vec VideoUpload) query;
+  getVoiceUsage: () -> (VoiceUsage) query;
+  getWebsiteBuilderRateLimit: () -> (nat) query;
+  getWebsiteJob: (jobId: text) -> (opt WebsiteJob) query;
+  getWebsiteJobs: () -> (vec WebsiteJob) query;
+  getWeeklyBriefingState: () -> (WeeklyBriefingState) query;
+  getWhatsAppConfig: () -> (opt WhatsAppConfig) query;
+  getWhatsAppHistory: (limit: opt nat, before: opt int) ->
+   (vec WhatsAppConversationEntry) query;
+  getXPostingConfig: () -> (XPostingConfig) query;
+  getXPostingStatus: () ->
+   (record {
+      earningsCents: nat;
+      isUnlocked: bool;
+      progressPct: nat;
+      thresholdCents: nat;
+      totalPosts: nat;
+    }) query;
+  getXPosts: (limit: nat, offset: nat) -> (vec XPost) query;
+  getZeroXWorkTasks: () -> (vec ZeroXWorkTask) query;
+  handleSnapScanWebhook: (payload: text, signature: text) -> (text);
+  hasLikedForumPost: (postId: ForumPostId) -> (bool) query;
+  incrementVoiceUsage: () -> (nat);
+  isBrowserbaseConfigured: () -> (bool);
+  isCallerAdmin: () -> (bool) query;
+  isCamofoxConfigured: () -> (bool) query;
+  isElevenLabsConfigured: () -> (bool) query;
+  isOpenClawConfigured: () -> (bool) query;
+  isOpportunityHunterConfigured: () -> (bool) query;
+  isSnapScanConfigured: () -> (bool) query;
+  isStripeConfigured: () -> (bool) query;
+  isTavilyConfigured: () -> (bool) query;
+  isUploadPostConfigured: () -> (bool) query;
+  isWhatsAppConfigured: () -> (bool) query;
+  isZeroXWorkRegistered: () -> (bool) query;
+  iterateDriverWebsite: (jobId: text, instruction: text) -> (Result_1);
+  likeForumPost: (postId: ForumPostId) -> (variant {
+                                             err: text;
+                                             ok: nat;
+                                           });
+  listCampaigns: (status: opt CampaignStatus) -> (vec Campaign) query;
+  listDriverDocuments: () -> (vec DocumentRecord) query;
+  listShortsJobs: () -> (vec ShortsJob) query;
+  logBehavioralEvent: (eventType: text, page: text, details: text, timestamp:
+   int) -> ();
+  logOutcomeEvent: (recommendationId: text, outcome: text) -> ();
+  logPassengerOrder: (driverName: text, order: PassengerOrder) -> ();
+  logRecommendation: (rec: NdunaRecommendation) -> (nat);
+  logRecommendationV2: (rec: NdunaRecommendationV2) -> (text);
+  markEventsAsRead: () -> ();
+  monthlyAnalysis: (driverId: text, year: nat, month: nat) ->
+   (MonthlyInsights);
+  monthlyPromptEvolution: () -> (text);
+  pauseAllCampaigns: () -> (bool);
+  proposeCampaign: () -> (variant {
+                            err: text;
+                            ok: Campaign;
+                          });
+  provisionNdunaInbox: () -> (variant {
+                                err: text;
+                                ok: text;
+                              });
+  publishDriverWebsite: (jobId: text) -> (Result);
+  queryAIAgent: (message: text, contextData: opt text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  queryDocumentsByType: (docType: text) -> (vec DocumentRecord) query;
+  recalculateDriverProfile: () -> (DriverAnalyticsProfile);
+  receiveWhatsAppWebhook: (payload: text, signature: text) -> (text);
+  recordConversion: (campaignId: text, driverId: text, eventType: text) ->
+   (bool);
+  recordExposureOutcome: (estimatedExposure: nat, actualDealValue: nat) -> ();
+  recordOutcome: (recId: nat, outcome: RecommendationOutcome) -> (bool);
+  recordOutcomeV2: (outcome: RecommendationOutcomeV2) -> (bool);
+  registerWhatsAppPhone: (phone: text) -> (variant {
+                                             err: text;
+                                             ok;
+                                           });
+  rejectCampaign: (campaignId: text, reason: text) ->
+   (variant {
+      err: text;
+      ok: Campaign;
+    });
+  requestChanges: (campaignId: text, notes: text) ->
+   (variant {
+      err: text;
+      ok: Campaign;
+    });
+  requestMarkdownConversion: (storageRef: text) -> (variant {
+                                                      err: text;
+                                                      ok;
+                                                    });
+  resetAllDriverMemory: () -> ();
+  /// Admin only: reset all driver rate limit counters manually.
+  resetAllRateLimits: () -> ();
+  resetNdunaEvolution: () -> ();
+  resumeAllCampaigns: () -> (bool);
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  saveDriverPaymentConfig: (config: DriverPaymentConfig) -> ();
+  saveFuelProfile: (fuelConsumptionRate: float64, vehicleName: text) -> ();
+  saveMySnapScanMerchantId: (merchantId: text) -> ();
+  savePostingSchedule: (schedule: PostingSchedule) -> ();
+  saveStakingRecord: ("record": StakingRecord) -> ();
+  saveVideoBrandingConfig: (config: BrandingConfig) -> ();
+  sendLeadFollowupEmail: (companyEmail: text, companyName: text, driverName:
+   text, followupDay: nat) -> (variant {
+                                 err: text;
+                                 ok;
+                               });
+  sendOnboardingEmail: (driverEmail: text, dayNumber: nat) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  sendPitchEmail: (companyEmail: text, companyName: text, pitchContent:
+   text) -> (variant {
+               err: text;
+               ok;
+             });
+  sendWebsiteByEmail: (jobId: text, websiteHtml: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  sendWeeklyBriefingEmail: (driverEmail: text, briefingContent: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  sendWhatsAppMessage: (toPhone: text, body: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  /// Admin only: set both Cloudflare AI Gateway URL and key in one call.
+  setAIGatewayConfig: (url: text, key: text) -> ();
+  /// Admin only: set the Cloudflare AI Gateway API key.
+  setAIGatewayKey: (key: text) -> ();
+  /// Admin only: set the Cloudflare AI Gateway URL.
+  setAIGatewayUrl: (url: text) -> ();
+  setAgentMailApiKey: (key: text) -> ();
+  /// Admin only: set Brian API key for natural language transaction guides.
+  setBrianApiKey: (key: text) -> ();
+  setBrowserbaseConfig: (apiKey: text) -> (variant {
+                                             err: text;
+                                             ok: text;
+                                           });
+  /// Admin only: set CoinMarketCap API key for Fear & Greed index.
+  setCMCApiKey: (key: text) -> ();
+  setCamofoxBaseUrl: (url: text) -> ();
+  setCampaignConfig: (config: CampaignConfig) -> (bool);
+  setDocVaultNotesEnabled: (enabled: bool) -> (variant {
+                                                 err: text;
+                                                 ok: bool;
+                                               });
+  setDriverRouteOptIn: (primaryRoute: SAZone, secondaryRoute: opt SAZone) ->
+   ();
+  setEarningsGoal: (goal: EarningsGoal) -> ();
+  setElevenLabsApiKey: (key: text) -> ();
+  /// Admin only: store the Exa API key securely in the canister.
+  /// Never returned in plain text — use getExaApiKey for a masked preview.
+  setExaApiKey: (key: text) -> (variant {
+                                  err: text;
+                                  ok;
+                                });
+  setGoogleMapsApiKey: (key: text) -> ();
+  setHermesConfig: (openRouterKey: text, tavilyKey: text, model: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  setHyperframesVpsKey: (key: text) -> ();
+  setHyperframesVpsUrl: (url: text) -> ();
+  setLeadFollowupEmailEnabled: (enabled: bool) -> ();
+  setOnboardingEmailEnabled: (enabled: bool) -> ();
+  setOpenClawApiKey: (key: text, apiUrl: text, model: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  setOpportunityHunterConfig: (url: text, key: text) ->
+   (variant {
+      err: text;
+      ok: bool;
+    });
+  /// Admin only: set the Orbis API key (enables PQS pre-flight + Orbis LLM fallback).
+  /// Set to empty string to disable both features.
+  setOrbisApiKey: (key: text) -> ();
+  setOrbisPublisherConfig: (config: OrbisListingConfig) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  /// Admin-only: enable or disable pilot mode.
+  /// When pilot mode is on, all paid third-party outcalls are skipped (ElevenLabs,
+  /// Whisper, Camofox, Upload-Post, 360dialog paid templates, Tavily paid tier) and
+  /// OpenRouter is restricted to free-tier models only.
+  setPilotMode: (enabled: bool) -> (variant {
+                                      err: text;
+                                      ok;
+                                    });
+  setReferralConfig: (config: ReferralConfig) -> ();
+  setSchedulerConfig: (config: SchedulerConfig) -> (variant {
+                                                      err: text;
+                                                      ok;
+                                                    });
+  setShortsVpsConfig: (vpsUrl: text, vpsKey: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  setSnapScanConfig: (merchantApiKey: text, webhookSecret: text, merchantId:
+   text) -> ();
+  setStripeConfiguration: (config: StripeConfiguration) -> ();
+  setTavilyApiKey: (key: text) -> ();
+  setTomTomApiKey: (key: text) -> ();
+  setUploadPostConfig: (config: UploadPostConfig) -> ();
+  setVideoWhisperConfig: (config: WhisperConfig__1) -> ();
+  setWeeklyBriefingEmailEnabled: (enabled: bool) -> ();
+  setWeeklyBriefingEnabled: (enabled: bool) -> ();
+  setWhatsAppConfig: (config: WhatsAppConfig) -> ();
+  setWhisperConfig: (config: WhisperConfig) -> ();
+  setXApiKeys: (xApiKey: text, xApiSecret: text, xAccessToken: text,
+   xAccessTokenSecret: text) -> (variant {
+                                   err: text;
+                                   ok;
+                                 });
+  setXEarningsThreshold: (thresholdUsd: nat) -> (variant {
+                                                   err: text;
+                                                   ok;
+                                                 });
+  submitShortsJob: (req: ShortsRequest) -> (variant {
+                                              err: text;
+                                              ok: text;
+                                            });
+  submitZeroXWorkTask: (taskId: text, deliverable: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  sync0xWorkEarnings: () -> (variant {
+                               err: text;
+                               ok: ZeroXWorkEarnings;
+                             });
+  /// Admin only: sync 0xWork earnings AND update the X posting threshold tracker.
+  /// Wraps sync0xWorkEarnings() and then calls updateMonthlyXEarnings() with the
+  /// latest cumulative USDC converted to cents (1 USDC = 100 cents).
+  syncEarningsAndXThreshold: () -> (variant {
+                                      err: text;
+                                      ok: text;
+                                    });
+  syncXPostMetrics: () -> (variant {
+                             err: text;
+                             ok: nat;
+                           });
+  tavilySearch: (searchQuery: text, searchContext: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  /// Admin only: test the stored Exa API key by running a company research query.
+  /// Returns a summary string (company name + snippet) on success, or an error message.
+  testExaCompanyResearch: (searchQuery: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+  trigger0xWorkRegistration: () -> (variant {
+                                      err: text;
+                                      ok: text;
+                                    });
+  triggerBrowserbaseHunt: (driverPrincipal: principal) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  triggerLeadRefresh: () -> (variant {
+                               err: text;
+                               ok: text;
+                             });
+  triggerNdunaXPost: (postType: XPostType) ->
+   (variant {
+      err: text;
+      ok: XPost;
+    });
+  triggerOpportunityHunt: (driverId: text) -> (variant {
+                                                 err: text;
+                                                 ok: text;
+                                               });
+  /// Admin only: trigger Orbis agent self-registration.
+  /// Calls the Orbis discovery → register → subscribe flow and stores the returned
+  /// sk_... API key into orbisApiKeyStore automatically on success.
+  triggerOrbisRegistration: (email: text, password: text, username: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  triggerReferralBonus: (newDriverId: text) -> (opt text);
+  triggerTaskDiscovery: () -> (variant {
+                                 err: text;
+                                 ok: nat;
+                               });
+  triggerVideoProcessing: (uploadId: text) -> (variant {
+                                                 err: text;
+                                                 ok: text;
+                                               });
+  triggerWeeklyBriefings: () -> (record {
+                                   failed: nat;
+                                   sent: nat;
+                                 });
+  updateDriverMemory: (notes: text, userProfile: text) -> ();
+  updateDriverRating: (rating: float64) -> (variant {
+                                              err: text;
+                                              ok;
+                                            });
+  updateLeadStatus: (leadId: text, status: LeadStatus) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  updateMarkdownContent: (storageRef: text, content: opt text, status:
+   MarkdownStatus) -> (variant {
+                         err: text;
+                         ok;
+                       });
+  updateMonthlyXEarnings: (earningsCents: nat) -> (variant {
+                                                     err: text;
+                                                     ok;
+                                                   });
+  updateNdunaSystemPrompt: (delta: text) -> (variant {
+                                               err: text;
+                                               ok;
+                                             });
+  updatePitch: (id: text, updated: CompanyPitch) -> (bool);
+  updatePitchStatus: (id: text, status: PitchStatus) -> (bool);
+  updateShortsJobStatus: (jobId: text, status: ShortsStatus, outputUrl:
+   opt text, errorMsg: opt text) -> (variant {
+                                       err: text;
+                                       ok;
+                                     });
+  uploadDocument: (storageRef: text, docType: DocumentType, fileName: 
+   text, notes: text) -> (variant {
+                            err: text;
+                            ok: text;
+                          });
+  upsertCompetitiveProfile: (city: text, surgeAccuracy: float64, dealsClosed:
+   nat, avgDealValue: nat) -> ();
+}
